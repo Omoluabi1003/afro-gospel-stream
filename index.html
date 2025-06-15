@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Afro-Gospel Stream - Home</title>
+  <meta name="description" content="Discover uplifting Afro-gospel music with Afro-Gospel Stream. Stream your favorite artists, explore new releases, and share the joy of gospel.">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    /* Variables */
+    :root {
+      --primary-color: #008000;
+      --secondary-color: #ffd700;
+      --bg-inverse: #222;
+      --text-inverse: #fff;
+      --container-width: 1280px;
+    }
+    /* Container */
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    /* Header */
+    .header {
+      background: #fff;
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .header.sticky {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    .nav ul {
+      display: flex;
+      list-style: none;
+    }
+    .nav li {
+      margin-left: 20px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    .nav a:hover {
+      color: var(--secondary-color);
+    }
+    .search-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: #333;
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    /* Hero */
+    .hero {
+      padding: 80px 0;
+      text-align: center;
+      background: #f5f5f5;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      color: var(--secondary-color);
+      text-decoration: underline wavy;
+    }
+    .hero-text {
+      max-width: 58%;
+      margin: 0 auto 30px;
+      font-size: 18px;
+    }
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn.primary {
+      background: var(--secondary-color);
+      color: var(--bg-inverse);
+      border: 1px solid var(--secondary-color);
+    }
+    .btn.primary:hover {
+      background: var(--primary-color);
+      color: var(--text-inverse);
+    }
+    .btn.secondary {
+      background: transparent;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+    .btn.secondary:hover {
+      background: var(--primary-color);
+      color: var(--text-inverse);
+    }
+    /* About */
+    .about {
+      padding: 80px 0;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+    .about-content h2 {
+      font-size: 36px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    .about-content p {
+      margin-bottom: 30px;
+    }
+    .counters {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+    .counter {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    .counter::after {
+      content: '';
+      display: block;
+      font-size: 16px;
+      color: #666;
+    }
+    /* Artists */
+    .artists {
+      padding: 80px 0;
+      background: var(--bg-inverse);
+      color: var(--text-inverse);
+      text-align: center;
+    }
+    .artists h2 {
+      font-size: 36px;
+      color: var(--text-inverse);
+      margin-bottom: 20px;
+    }
+    .artists p {
+      max-width: 58%;
+      margin: 0 auto 40px;
+    }
+    .masonry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    /* Tracks */
+    .tracks {
+      padding: 80px 0;
+    }
+    .tracks h2 {
+      font-size: 36px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    .tracks p {
+      margin-bottom: 40px;
+    }
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .post {
+      background: var(--bg-inverse);
+      color: var(--text-inverse);
+      border-radius: 4px;
+      padding: 20px;
+    }
+    .post .badge {
+      display: inline-block;
+      background: transparent;
+      color: var(--text-inverse);
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+    .post h3 {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+    .post h3 a {
+      color: var(--text-inverse);
+      text-decoration: none;
+    }
+    .post h3 a:hover {
+      color: var(--secondary-color);
+    }
+    .post p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    audio {
+      width: 100%;
+      background: var(--primary-color);
+      border-radius: 4px;
+    }
+    /* Genres */
+    .genres {
+      padding: 80px 0;
+      background: var(--bg-inverse);
+      color: var(--text-inverse);
+    }
+    .genres-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .genre-card {
+      text-align: center;
+    }
+    .genre-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .genre-card p {
+      font-size: 16px;
+    }
+    /* Listen Now */
+    .listen-now {
+      padding: 80px 0;
+      background: #f5f5f5;
+      text-align: center;
+    }
+    .listen-now h2 {
+      font-size: 36px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    .listen-now p {
+      max-width: 58%;
+      margin: 0 auto 30px;
+    }
+    /* Connect */
+    .connect {
+      padding: 80px 0;
+    }
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .contact-card {
+      text-align: left;
+      padding: 20px;
+    }
+    .contact-card i {
+      font-size: 30px;
+      color: var(--secondary-color);
+      margin-bottom: 15px;
+    }
+    .contact-card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .contact-card p a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    .contact-card p a:hover {
+      text-decoration: underline;
+    }
+    .connect iframe {
+      width: 100%;
+      height: 570px;
+      border: none;
+    }
+    /* Footer */
+    .footer {
+      background: var(--bg-inverse);
+      color: var(--text-inverse);
+      padding: 60px 0 20px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .footer h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .footer ul {
+      list-style: none;
+    }
+    .footer ul li {
+      margin-bottom: 10px;
+    }
+    .footer a {
+      color: var(--text-inverse);
+      text-decoration: none;
+    }
+    .footer a:hover {
+      color: var(--secondary-color);
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+    }
+    .newsletter-form input {
+      padding: 10px;
+      border: 1px solid var(--text-inverse);
+      background: transparent;
+      color: var(--text-inverse);
+      flex: 1;
+    }
+    .newsletter-form button {
+      padding: 10px 20px;
+      background: var(--secondary-color);
+      color: var(--bg-inverse);
+      border: none;
+      cursor: pointer;
+    }
+    .newsletter-form button:hover {
+      background: var(--primary-color);
+    }
+    .footer hr {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 40px 0;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom ul {
+      display: flex;
+      gap: 20px;
+    }
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero {
+        padding: 80px 15px;
+      }
+      .hero h1 {
+        font-size: 36px;
+      }
+      .hero-text {
+        max-width: 80%;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .counters {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .genres-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .connect-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 767px) {
+      .header .nav,
+      .header .search-btn {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .nav.active {
+        display: block;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 15px;
+      }
+      .nav.active ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .hero {
+        padding: 50px 15px;
+      }
+      .hero h1 {
+        font-size: 28px;
+      }
+      .hero-text {
+        max-width: 100%;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .about,
+      .artists,
+      .tracks,
+      .genres,
+      .listen-now,
+      .connect {
+        padding: 50px 15px;
+      }
+      .posts-grid {
+        grid-template-columns: 1fr;
+      }
+      .genres-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+      .footer-bottom ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="/" class="logo">Afro-Gospel Stream</a>
+      <nav class="nav">
+        <ul>
+          <li><a href="/about-us">About Us</a></li>
+          <li><a href="/artists">Artists</a></li>
+          <li><a href="/music">Music</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+      <button class="menu-toggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="animated-headline">
+          Experience the </span> <em>Afro-Gospel Stream</em>
+        </h1>
+        <p class="hero-text">
+          Discover a world of uplifting Afro-gospel music with Afro-Gospel Stream. Stream your favorite artists, explore new releases, and share the joy of gospel with friends and family.
+        </p>
+        <div class="hero-buttons">
+          <a href="#listen-now" class="btn primary">Listen Now</a>
+          <a href="/about-us" class="btn secondary">About Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Afro-Gospel Stream -->
+    <section class="about" id="about-afro-gospel-stream">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-content">
+            <h2>Our Mission & Values</h2>
+            <p>
+              Afro-Gospel Stream is committed to sharing the divine sound of Afro-gospel music with a global audience. We focus on promoting gospel artists, fostering community, and providing an accessible, uplifting experience for all fans of gospel music.
+            </p>
+            <div class="counters">
+              <div class="counter" data-target="1500">0k<br>Monthly Listeners</div>
+              <div class="counter" data-target="300">0k<br>Songs Streamed</div>
+              <div class="counter" data-target="500">0k<br>Active Users</div>
+              <div class="counter" data-target="200">0k<br>New Subscribers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Artists -->
+    <section class="artists" id="featured-artists">
+      <div class="container">
+        <h2>Featured Artists</h2>
+        <p>Discover the divine talents shaping Afro-gospel music today and explore their inspiring works.</p>
+        <div class="masonry-grid">
+          <div>Artist 1</div>
+          <div>Artist 2</div>
+          <div>Artist 3</div>
+          <div>Artist 4</div>
+          <div>Artist 5</div>
+          <div>Artist 6</div>
+          <div>Artist 7</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- My Tracks -->
+    <section class="tracks" id="my-tracks">
+      <div class="container">
+        <h2>My Afro-Gospel Tracks</h2>
+        <p>Listen to the latest Afro-gospel music from our collection.</p>
+        <div class="posts-grid">
+          <article class="post">
+            <span class="badge">Music</span>
+            <h3><a href="#">He Carried Me</a></h3>
+            <p>Experience the uplifting Afro-gospel track "He Carried Me" from your Afro-Gospel Stream collection.</p>
+            <audio controls>
+              <source src="audio/he-carried-me.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </article>
+          <article class="post">
+            <span class="badge">Music</span>
+            <h3><a href="#">Echoes of Mercy</a></h3>
+            <p>Enjoy the soulful sounds of "Echoes of Mercy" on Afro-Gospel Stream.</p>
+            <audio controls>
+              <source src="audio/echoes-of-mercy.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </article>
+          <article class="post">
+            <span class="badge">Music</span>
+            <h3><a href="#">Soulful Praise</a></h3>
+            <p>A vibrant Afro-gospel track to uplift your spirit.</p>
+            <audio controls>
+              <source src="audio/soulful-praise.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Music Genres -->
+    <section class="genres" id="music-genres">
+      <div class="container">
+        <div class="genres-grid">
+          <div class="genre-card">
+            <h3>Traditional Afro-Gospel</h3>
+            <p>Experience the roots of Afro-gospel with powerful vocals and timeless hymns that resonate with faith and heritage.</p>
+          </div>
+          <div class="genre-card">
+            <h3>Contemporary Afro-Gospel</h3>
+            <p>Uplifting melodies and modern arrangements that blend faith with today's sounds, inspiring a new generation.</p>
+          </div>
+          <div class="genre-card">
+            <h3>Urban Afro-Gospel</h3>
+            <p>Feel the rhythm of faith with beats and rhymes that speak to the soul, connecting urban culture with gospel messages.</p>
+          </div>
+          <div class="genre-card">
+            <h3>Instrumental Afro-Gospel</h3>
+            <p>Find peace and reflection with soothing instrumental pieces that create a serene atmosphere for prayer and meditation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Listen Now -->
+    <section class="listen-now" id="listen-now">
+      <div class="container">
+        <h2>Enjoy Afro-Gospel Music Now</h2>
+        <p>Discover a curated selection of uplifting Afro-gospel tracks ready for your immediate listening pleasure.</p>
+        <a href="/music" class="btn primary">Start Listening</a>
+      </div>
+    </section>
+
+    <!-- Connect With Us -->
+    <section class="connect" id="connect-with-us">
+      <div class="container">
+        <div class="connect-grid">
+          <div class="contact-card">
+            <i class="far fa-envelope"></i>
+            <h3>Email Us</h3>
+            <p>Feel free to reach out via email for support, inquiries, or collaborations. <a href="mailto:support@afrogospelstream.com">support@afrogospelstream.com</a></p>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-phone-alt"></i>
+            <h3>Call Us</h3>
+            <p>Our support team is available by phone. Call us at <a href="tel:+16155550199">+1 615-555-0199</a> during business hours.</p>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Visit Us</h3>
+            <p>Come see us at <a href="https://www.google.com/maps/place/123+Music+Lane,+Nashville,+TN+37203">123 Music Lane, Nashville, TN 37203</a>.</p>
+          </div>
+        </div>
+        <iframe src="https://maps.google.com/maps?q=123+Music+Lane,+Nashville,+TN+37203&t=m&z=15&output=embed&iwloc=near" title="Afro-Gospel Stream Location" loading="lazy"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="/artists">Artists</a></li>
+            <li><a href="/music">Music</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Company</h3>
+          <ul>
+            <li><a href="/about-us">About Us</a></li>
+            <li><a href="#careers">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="#facebook">Facebook</a></li>
+            <li><a href="#instagram">Instagram</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Stay Tuned</h3>
+          <p>Subscribe to our newsletter for the latest Afro-gospel music news and updates.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <hr>
+      <div class="footer-bottom">
+        <p>© 2025 Afro-Gospel Stream. All rights reserved.</p>
+        <ul>
+          <li><a href="/terms-and-conditions">Terms and Conditions</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky Header
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.classList.add('sticky');
+      } else {
+        header.classList.remove('sticky');
+      }
+    });
+
+    // Counter Animation
+    const counters = document.querySelectorAll('.counter');
+    const animateCounter = (counter) => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText.replace('k', '');
+      const increment = target / 200;
+      if (count < target) {
+        counter.innerText = `${Math.ceil(count + increment)}k`;
+        setTimeout(() => animateCounter(counter), 10);
+      } else {
+        counter.innerText = `${target}k`;
+      }
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(counter => observer.observe(counter));
+
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  </script>
+</body>
+</html> 
