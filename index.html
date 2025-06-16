@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Afro-Gospel Stream - Home</title>
   <meta name="description" content="Discover uplifting Afro-gospel music with Afro-Gospel Stream. Stream your favorite artists, explore new releases, and share the joy of gospel.">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Inter for Apple Music Aesthetic -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <style>
     /* Reset */
     * {
@@ -13,7 +17,7 @@
       box-sizing: border-box;
     }
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', Arial, sans-serif;
       line-height: 1.6;
       color: #333;
     }
@@ -24,6 +28,8 @@
       --bg-inverse: #222;
       --text-inverse: #fff;
       --container-width: 1280px;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.2);
     }
     /* Container */
     .container {
@@ -87,7 +93,7 @@
     .hero {
       padding: 80px 0;
       text-align: center;
-      background: #f5f5f5;
+      background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
     }
     .hero h1 {
       font-size: 48px;
@@ -115,8 +121,11 @@
       padding: 12px 24px;
       text-decoration: none;
       font-weight: 500;
-      border-radius: 4px;
-      transition: background 0.3s, color 0.3s;
+      border-radius: 8px;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
     }
     .btn.primary {
       background: var(--secondary-color);
@@ -204,6 +213,55 @@
     .tracks p {
       margin-bottom: 40px;
     }
+    .album {
+      margin-bottom: 40px;
+      background: var(--glass-bg);
+      border: var(--glass-border);
+      border-radius: 12px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+    .album-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    .album-header:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    .album-header img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .album-header h3 {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+    .album-header p {
+      font-size: 16px;
+      color: #666;
+    }
+    .album-toggle {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--primary-color);
+      cursor: pointer;
+      margin-left: auto;
+    }
+    .album-content {
+      display: none;
+      padding: 20px;
+    }
+    .album-content.active {
+      display: block;
+    }
     .posts-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -212,15 +270,21 @@
     .post {
       background: var(--bg-inverse);
       color: var(--text-inverse);
-      border-radius: 4px;
+      border-radius: 12px;
       padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
     .post .badge {
       display: inline-block;
-      background: transparent;
+      background: var(--primary-color);
       color: var(--text-inverse);
       padding: 5px 10px;
       font-size: 14px;
+      border-radius: 4px;
     }
     .post h3 {
       font-size: 20px;
@@ -237,10 +301,21 @@
       font-size: 16px;
       margin-bottom: 20px;
     }
+    .post img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
     audio {
       width: 100%;
       background: var(--primary-color);
-      border-radius: 4px;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+    audio:hover {
+      transform: scale(1.02);
     }
     /* Genres */
     .genres {
@@ -255,6 +330,14 @@
     }
     .genre-card {
       text-align: center;
+      background: var(--glass-bg);
+      border: var(--glass-border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.3s;
+    }
+    .genre-card:hover {
+      transform: translateY(-5px);
     }
     .genre-card h3 {
       font-size: 20px;
@@ -266,7 +349,7 @@
     /* Listen Now */
     .listen-now {
       padding: 80px 0;
-      background: #f5f5f5;
+      background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
       text-align: center;
     }
     .listen-now h2 {
@@ -291,6 +374,13 @@
     .contact-card {
       text-align: left;
       padding: 20px;
+      background: var(--glass-bg);
+      border: var(--glass-border);
+      border-radius: 12px;
+      transition: transform 0.3s;
+    }
+    .contact-card:hover {
+      transform: translateY(-5px);
     }
     .contact-card i {
       font-size: 30px;
@@ -312,6 +402,7 @@
       width: 100%;
       height: 570px;
       border: none;
+      border-radius: 12px;
     }
     /* Footer */
     .footer {
@@ -352,6 +443,7 @@
       background: transparent;
       color: var(--text-inverse);
       flex: 1;
+      border-radius: 8px;
     }
     .newsletter-form button {
       padding: 10px 20px;
@@ -359,6 +451,7 @@
       color: var(--bg-inverse);
       border: none;
       cursor: pointer;
+      border-radius: 8px;
     }
     .newsletter-form button:hover {
       background: var(--primary-color);
@@ -472,10 +565,10 @@
 </head>
 <body>
   <!-- Header -->
-  <header class="header">
+  <header class="header" role="banner">
     <div class="container">
       <a href="/" class="logo">Afro-Gospel Stream</a>
-      <nav class="nav">
+      <nav class="nav" role="navigation">
         <ul>
           <li><a href="/about-us">About Us</a></li>
           <li><a href="/artists">Artists</a></li>
@@ -489,7 +582,7 @@
   </header>
 
   <!-- Main Content -->
-  <main>
+  <main role="main">
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
@@ -546,135 +639,307 @@
     <!-- My Afro-Gospel Tracks -->
     <section class="tracks" id="my-tracks">
       <div class="container">
-        <h2>My Afro-Gospel Tracks</h2>
-        <p>Listen to the latest Afro-gospel music from our collection, featuring soulful Naija vibes.</p>
-        <div class="posts-grid">
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Am Grateful Lord (Instrumental)</a></h3>
-            <p>A soulful instrumental Afro-gospel track to uplift your spirit.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Am%20grateful%20Lord%20(Instrumental).mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Am Grateful Lord</a></h3>
-            <p>A heartfelt Afro-gospel song of gratitude.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Am%20grateful%20Lord.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Disappoint People Early</a></h3>
-            <p>An inspiring Afro-gospel track about resilience.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Disappoint%20People%20Early.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Holy Vibes Only (Instrumental)</a></h3>
-            <p>A serene instrumental Afro-gospel piece.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Holy%20Vibes%20Only%20(Instrumental).mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Holy Vibes Only</a></h3>
-            <p>A vibrant Afro-gospel track filled with holy energy.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Holy%20Vibes%20Only.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Na So God Dey Do</a></h3>
-            <p>A Pidgin-infused Afro-gospel celebration of God's ways.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Na%20So%20God%20Dey%20Do.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Na You</a></h3>
-            <p>A soulful dedication to God in Afro-gospel style.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Na%20You.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Oil No Dry</a></h3>
-            <p>An uplifting Afro-gospel song about abundance.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Oil%20No%20Dry.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Oluwa You Too Good</a></h3>
-            <p>A Yoruba-flavored Afro-gospel praise anthem.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Oluwa%20You%20Too%20Good.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Recognize Me (Instrumental)</a></h3>
-            <p>A reflective instrumental Afro-gospel track.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Recognize%20Me%20(Instrumental).mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Recognize Me</a></h3>
-            <p>An Afro-gospel plea for divine recognition.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Recognize%20Me.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Rotten Fruit</a></h3>
-            <p>A powerful Afro-gospel message of transformation.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Rotten%20Fruit.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Still I Rise to Praise</a></h3>
-            <p>An Afro-gospel anthem of resilience and worship.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Still%20I%20Rise%20to%20Praise.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
-          <article class="post">
-            <span class="badge">Music</span>
-            <h3><a href="#">Testimony No Dey Finish</a></h3>
-            <p>A Pidgin-flavored Afro-gospel song of endless praise.</p>
-            <audio controls>
-              <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Testimony%20No%20Dey%20Finish.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </article>
+        <h2>My Afro-Gospel Albums</h2>
+        <p>Explore our curated albums featuring soulful Afro-gospel tracks to uplift your spirit.</p>
+        <!-- Neo-Gospel Album -->
+        <div class="album">
+          <div class="album-header" role="button" aria-expanded="false">
+            <img src="https://via.placeholder.com/80" alt="Neo-Gospel Album Cover" loading="lazy">
+            <div>
+              <h3>Neo-Gospel</h3>
+              <p>2025 • 14 Tracks</p>
+            </div>
+            <button class="album-toggle" aria-label="Toggle Album Tracks"><i class="fas fa-chevron-down"></i></button>
+          </div>
+          <div class="album-content">
+            <div class="posts-grid">
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Am Grateful Lord (Instrumental) Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Am Grateful Lord (Instrumental)</a></h3>
+                <p>A soulful instrumental Afro-gospel track to uplift your spirit.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Am%20grateful%20Lord%20(Instrumental).mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Am Grateful Lord Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Am Grateful Lord</a></h3>
+                <p>A heartfelt Afro-gospel song of gratitude.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Am%20grateful%20Lord.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Disappoint People Early Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Disappoint People Early</a></h3>
+                <p>An inspiring Afro-gospel track about resilience.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Disappoint%20People%20Early.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Holy Vibes Only (Instrumental) Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Holy Vibes Only (Instrumental)</a></h3>
+                <p>A serene instrumental Afro-gospel piece.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Holy%20Vibes%20Only%20(Instrumental).mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Holy Vibes Only Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Holy Vibes Only</a></h3>
+                <p>A vibrant Afro-gospel track filled with holy energy.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Holy%20Vibes%20Only.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Na So God Dey Do Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Na So God Dey Do</a></h3>
+                <p>A Pidgin-infused Afro-gospel celebration of God's ways.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Na%20So%20God%20Dey%20Do.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Na You Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Na You</a></h3>
+                <p>A soulful dedication to God in Afro-gospel style.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Na%20You.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Oil No Dry Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Oil No Dry</a></h3>
+                <p>An uplifting Afro-gospel song about abundance.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Oil%20No%20Dry.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Oluwa You Too Good Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Oluwa You Too Good</a></h3>
+                <p>A Yoruba-flavored Afro-gospel praise anthem.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Oluwa%20You%20Too%20Good.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Recognize Me (Instrumental) Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Recognize Me (Instrumental)</a></h3>
+                <p>A reflective instrumental Afro-gospel track.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Recognize%20Me%20(Instrumental).mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Recognize Me Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Recognize Me</a></h3>
+                <p>An Afro-gospel plea for divine recognition.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Recognize%20Me.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Rotten Fruit Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Rotten Fruit</a></h3>
+                <p>A powerful Afro-gospel message of transformation.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Rotten%20Fruit.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Still I Rise to Praise Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Still I Rise to Praise</a></h3>
+                <p>An Afro-gospel anthem of resilience and worship.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Still%20I%20Rise%20to%20Praise.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Testimony No Dey Finish Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Testimony No Dey Finish</a></h3>
+                <p>A Pidgin-flavored Afro-gospel song of endless praise.</p>
+                <audio controls>
+                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Testimony%20No%20Dey%20Finish.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+            </div>
+          </div>
+        </div>
+        <!-- Faith&B Album -->
+        <div class="album">
+          <div class="album-header" role="button" aria-expanded="false">
+            <img src="https://via.placeholder.com/80" alt="Faith&B Album Cover" loading="lazy">
+            <div>
+              <h3>Faith&B</h3>
+              <p>2025 • 14 Tracks</p>
+            </div>
+            <button class="album-toggle" aria-label="Toggle Album Tracks"><i class="fas fa-chevron-down"></i></button>
+          </div>
+          <div class="album-content">
+            <div class="posts-grid">
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Faded Hues Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Faded Hues</a></h3>
+                <p>A soulful track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="False Alarm Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">False Alarm</a></h3>
+                <p>An uplifting track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="https://github.com/Omoluabi1003/afro-gospel-stream/blob/main/False%20Alarm.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Glorified Caterpillar Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Glorified Caterpillar</a></h3>
+                <p>A transformative track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Hear the Earth Speak Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Hear the Earth Speak</a></h3>
+                <p>A reflective track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Let Me Be Seen Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Let Me Be Seen</a></h3>
+                <p>An empowering track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Little Things Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Little Things</a></h3>
+                <p>A heartfelt track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Needs Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Needs</a></h3>
+                <p>A soulful track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Not This Road Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Not This Road</a></h3>
+                <p>An inspiring track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Permitted Blessing Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Permitted Blessing</a></h3>
+                <p>A blessed track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Right In Front Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Right In Front</a></h3>
+                <p>A vibrant track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Scaffolding Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Scaffolding</a></h3>
+                <p>A supportive track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Stay Sincere Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Stay Sincere</a></h3>
+                <p>A sincere track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+              <article class="post">
+                <img src="https://via.placeholder.com/300x150" alt="Thank You For The Wound Thumbnail" loading="lazy">
+                <span class="badge">Music</span>
+                <h3><a href="#">Thank You For The Wound</a></h3>
+                <p>A grateful track from the Faith&B album.</p>
+                <audio controls>
+                  <source src="#" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -732,7 +997,7 @@
             <p>Come see us at <a href="https://www.google.com/maps/place/707+N+7th+St,+Fort+Pierce,+FL+34950">707 N 7th St, Fort Pierce, FL 34950</a>.</p>
           </div>
         </div>
-        <iframe src="https://maps.google.com/maps?q=123+Music+Lane,+Nashville,+TN+37203&t=m&z=15&output=embed&iwloc=near" title="Afro-Gospel Stream Location" loading="lazy"></iframe>
+        <iframe src="https://maps.google.com/maps?q=707+N+7th+St,+Fort+Pierce,+FL+34950&t=m&z=15&output=embed&iwloc=near" title="Afro-Gospel Stream Location" loading="lazy"></iframe>
       </div>
     </section>
   </main>
@@ -822,6 +1087,30 @@
     const nav = document.querySelector('.nav');
     menuToggle.addEventListener('click', () => {
       nav.classList.toggle('active');
+    });
+
+    // Album Toggle
+    document.querySelectorAll('.album-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const toggle = header.querySelector('.album-toggle');
+        const isExpanded = header.getAttribute('aria-expanded') === 'true';
+        content.classList.toggle('active');
+        header.setAttribute('aria-expanded', !isExpanded);
+        toggle.innerHTML = isExpanded ? '<i class="fas fa-chevron-down"></i>' : '<i class="fas fa-chevron-up"></i>';
+      });
+    });
+
+    // Audio Playback Control
+    const audioElements = document.querySelectorAll('audio');
+    audioElements.forEach(audio => {
+      audio.addEventListener('play', () => {
+        audioElements.forEach(otherAudio => {
+          if (otherAudio !== audio && !otherAudio.paused) {
+            otherAudio.pause();
+          }
+        });
+      });
     });
   </script>
 </body>
