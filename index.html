@@ -1,696 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Afro-Gospel Stream - Home</title>
   <meta name="description" content="Discover uplifting Afro-gospel music with Afro-Gospel Stream. Stream your favorite artists, explore new releases, and share the joy of gospel.">
-  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts: Inter for Apple Music Aesthetic -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-  <style>
-    /* Smooth Scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      margin-bottom: 60px; /* Space for player bar */
-    }
-    /* Variables */
-    :root {
-      --primary-color: #008000;
-      --secondary-color: #ffd700;
-      --bg-inverse: #222;
-      --text-inverse: #fff;
-      --container-width: 1280px;
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    /* Container */
-    .container {
-      max-width: var(--container-width);
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    /* Header */
-    .header {
-      background: #fff;
-      padding: 15px 0;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      position: relative;
-    }
-    .header.sticky {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: var(--primary-color);
-      text-decoration: none;
-    }
-    .nav ul {
-      display: flex;
-      list-style: none;
-    }
-    .nav li {
-      margin-left: 20px;
-    }
-    .nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
-    .nav a:hover {
-      color: var(--secondary-color);
-    }
-    .search-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 18px;
-      color: #333;
-    }
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-    }
-    /* Hero */
-    .hero {
-      padding: 80px 0;
-      text-align: center;
-      background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
-    }
-    .hero h1 {
-      font-size: 48px;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: 20px;
-    }
-    .hero h1 span {
-      color: var(--secondary-color);
-      text-decoration: underline wavy;
-    }
-    .hero-text {
-      max-width: 58%;
-      margin: 0 auto 30px;
-      font-size: 18px;
-    }
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      text-decoration: none;
-      font-weight: 500;
-      border-radius: 8px;
-      transition: background 0.3s, color 0.3s, transform 0.2s;
-    }
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-    .btn.primary {
-      background: var(--secondary-color);
-      color: var(--bg-inverse);
-      border: 1px solid var(--secondary-color);
-    }
-    .btn.primary:hover {
-      background: var(--primary-color);
-      color: var(--text-inverse);
-    }
-    .btn.secondary {
-      background: transparent;
-      color: var(--primary-color);
-      border: 1px solid var(--primary-color);
-    }
-    .btn.secondary:hover {
-      background: var(--primary-color);
-      color: var(--text-inverse);
-    }
-    /* About */
-    .about {
-      padding: 80px 0;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      align-items: center;
-    }
-    .about-content h2 {
-      font-size: 36px;
-      color: var(--primary-color);
-      margin-bottom: 20px;
-    }
-    .about-content p {
-      margin-bottom: 30px;
-    }
-    .counters {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      text-align: center;
-    }
-    .counter {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--primary-color);
-    }
-    .counter::after {
-      content: '';
-      display: block;
-      font-size: 16px;
-      color: #666;
-    }
-    /* Artists */
-    .artists {
-      padding: 80px 0;
-      background: var(--bg-inverse);
-      color: var(--text-inverse);
-      text-align: center;
-    }
-    .artists h2 {
-      font-size: 36px;
-      color: var(--text-inverse);
-      margin-bottom: 20px;
-    }
-    .artists p {
-      max-width: 58%;
-      margin: 0 auto 40px;
-    }
-    .masonry-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    /* Tracks */
-    .tracks {
-      padding: 80px 0;
-    }
-    .tracks h2 {
-      font-size: 36px;
-      color: var(--primary-color);
-      margin-bottom: 20px;
-    }
-    .tracks p {
-      margin-bottom: 40px;
-    }
-    .album {
-      margin-bottom: 40px;
-      background: var(--glass-bg);
-      border: var(--glass-border);
-      border-radius: 12px;
-      padding: 10px;
-      backdrop-filter: blur(10px);
-    }
-    .album-header {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
-    .album-header:hover {
-      background: rgba(0, 0, 0, 0.05);
-    }
-    .album-header img {
-      width: 60px;
-      height: 60px;
-      border-radius: 6px;
-      object-fit: cover;
-    }
-    .album-header h3 {
-      font-size: 20px;
-      color: var(--primary-color);
-    }
-    .album-header p {
-      font-size: 14px;
-      color: #666;
-    }
-    .album-toggle {
-      background: none;
-      border: none;
-      font-size: 18px;
-      color: var(--primary-color);
-      cursor: pointer;
-      margin-left: auto;
-    }
-    .album-content {
-      display: none;
-      padding: 10px 0;
-    }
-    .album-content.active {
-      display: block;
-    }
-    .track-list {
-      list-style: none;
-    }
-    .track-item {
-      display: flex;
-      align-items: center;
-      padding: 8px 10px;
-      background: var(--bg-inverse);
-      color: var(--text-inverse);
-      border-radius: 6px;
-      margin-bottom: 5px;
-      transition: transform 0.2s, background 0.2s;
-    }
-    .track-item:hover {
-      transform: translateX(5px);
-      background: rgba(255, 255, 255, 0.05);
-    }
-    .track-item img {
-      width: 40px;
-      height: 40px;
-      border-radius: 4px;
-      margin-right: 10px;
-      object-fit: cover;
-    }
-    .track-item .track-info {
-      flex-grow: 1;
-    }
-    .track-item .track-info h3 {
-      font-size: 16px;
-      margin: 0;
-      color: var(--primary-color);
-    }
-    .track-item .track-info h3 a {
-      color: inherit;
-      text-decoration: none;
-    }
-    .track-item .track-info h3 a:hover {
-      text-decoration: underline;
-    }
-    .track-item .track-info p {
-      font-size: 12px;
-      color: #bbb;
-      margin: 2px 0;
-    }
-    .track-item audio {
-      width: 100px;
-      background: var(--primary-color);
-      border-radius: 4px;
-    }
-    /* Genres */
-    .genres {
-      padding: 80px 0;
-      background: var(--bg-inverse);
-      color: var(--text-inverse);
-    }
-    .genres-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-    .genre-card {
-      text-align: center;
-      background: var(--glass-bg);
-      border: var(--glass-border);
-      border-radius: 12px;
-      padding: 20px;
-      transition: transform 0.3s;
-    }
-    .genre-card:hover {
-      transform: translateY(-5px);
-    }
-    .genre-card h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-    .genre-card p {
-      font-size: 16px;
-    }
-    /* Listen Now */
-    .listen-now {
-      padding: 80px 0;
-      background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
-      text-align: center;
-    }
-    .listen-now h2 {
-      font-size: 36px;
-      color: var(--primary-color);
-      margin-bottom: 20px;
-    }
-    .listen-now p {
-      max-width: 58%;
-      margin: 0 auto 30px;
-    }
-    /* Connect */
-    .connect {
-      padding: 80px 0;
-    }
-    .connect-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-    .contact-card {
-      text-align: left;
-      padding: 20px;
-      background: var(--glass-bg);
-      border: var(--glass-border);
-      border-radius: 12px;
-      transition: transform 0.3s;
-    }
-    .contact-card:hover {
-      transform: translateY(-5px);
-    }
-    .contact-card i {
-      font-size: 30px;
-      color: var(--secondary-color);
-      margin-bottom: 15px;
-    }
-    .contact-card h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    .contact-card p a {
-      color: var(--primary-color);
-      text-decoration: none;
-    }
-    .contact-card p a:hover {
-      text-decoration: underline;
-    }
-    .connect iframe {
-      width: 100%;
-      height: 570px;
-      border: none;
-      border-radius: 12px;
-    }
-    /* Footer */
-    .footer {
-      background: var(--bg-inverse);
-      color: var(--text-inverse);
-      padding: 60px 0 20px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-    .footer h3 {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-    .footer ul {
-      list-style: none;
-    }
-    .footer ul li {
-      margin-bottom: 10px;
-    }
-    .footer a {
-      color: var(--text-inverse);
-      text-decoration: none;
-    }
-    .footer a:hover {
-      color: var(--secondary-color);
-    }
-    .newsletter-form {
-      display: flex;
-      gap: 10px;
-    }
-    .newsletter-form input {
-      padding: 10px;
-      border: 1px solid var(--text-inverse);
-      background: transparent;
-      color: var(--text-inverse);
-      flex: 1;
-      border-radius: 8px;
-    }
-    .newsletter-form button {
-      padding: 10px 20px;
-      background: var(--secondary-color);
-      color: var(--bg-inverse);
-      border: none;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-    .newsletter-form button:hover {
-      background: var(--primary-color);
-    }
-    .footer hr {
-      border: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      margin: 40px 0;
-    }
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-bottom ul {
-      display: flex;
-      gap: 20px;
-    }
-    /* Player Bar */
-    .player-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: var(--bg-inverse);
-      padding: 5px 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-    }
-    .player-bar .controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .player-bar button {
-      background: none;
-      border: none;
-      color: var(--text-inverse);
-      font-size: 16px;
-      cursor: pointer;
-      padding: 5px;
-    }
-    .player-bar button:hover {
-      color: var(--secondary-color);
-    }
-    .player-bar button.active {
-      color: var(--secondary-color);
-    }
-    .player-bar .track-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-grow: 1;
-    }
-    .player-bar .track-info img {
-      width: 40px;
-      height: 40px;
-      border-radius: 4px;
-      object-fit: cover;
-    }
-    .player-bar .track-info div {
-      display: flex;
-      flex-direction: column;
-    }
-    .player-bar .track-info div h3 {
-      font-size: 14px;
-      margin: 0;
-      color: var(--text-inverse);
-    }
-    .player-bar .track-info div p {
-      font-size: 12px;
-      margin: 2px 0;
-      color: #bbb;
-    }
-    .player-bar .progress {
-      flex-grow: 1;
-      margin: 0 10px;
-    }
-    .player-bar .progress input[type="range"] {
-      width: 100%;
-      height: 5px;
-      background: #444;
-      outline: none;
-      -webkit-appearance: none;
-    }
-    .player-bar .progress input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 10px;
-      height: 10px;
-      background: var(--secondary-color);
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    .player-bar .volume {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .player-bar .volume input[type="range"] {
-      width: 60px;
-      height: 5px;
-      background: #444;
-      outline: none;
-      -webkit-appearance: none;
-    }
-    .player-bar .volume input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 10px;
-      height: 10px;
-      background: var(--secondary-color);
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    /* Responsive */
-    @media (max-width: 767px) {
-      .player-bar .volume {
-        display: none;
-      }
-      .player-bar .track-info img {
-        width: 30px;
-        height: 30px;
-      }
-      .player-bar .track-info div h3 {
-        font-size: 12px;
-      }
-      .player-bar .track-info div p {
-        font-size: 10px;
-      }
-    }
-    @media (max-width: 1024px) {
-      .hero {
-        padding: 80px 15px;
-      }
-      .hero h1 {
-        font-size: 36px;
-      }
-      .hero-text {
-        max-width: 80%;
-      }
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-      .counters {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .track-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .track-item audio {
-        width: 100%;
-        margin-top: 5px;
-      }
-      .genres-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .connect-grid {
-        grid-template-columns: 1fr;
-      }
-      .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 767px) {
-      .header .nav,
-      .header .search-btn {
-        display: none;
-      }
-      .menu-toggle {
-        display: block;
-      }
-      .nav.active {
-        display: block;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: #fff;
-        padding: 15px;
-      }
-      .nav.active ul {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .hero {
-        padding: 50px 15px;
-      }
-      .hero h1 {
-        font-size: 28px;
-      }
-      .hero-text {
-        max-width: 100%;
-      }
-      .hero-buttons {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .about,
-      .artists,
-      .tracks,
-      .genres,
-      .listen-now,
-      .connect {
-        padding: 50px 15px;
-      }
-      .track-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .track-item audio {
-        width: 100%;
-        margin-top: 5px;
-      }
-      .genres-grid {
-        grid-template-columns: 1fr;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-      .footer-bottom {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-      }
-      .footer-bottom ul {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-  </style>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#008000">
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <!-- Header -->
-  <header class="header" role="banner">
+  <div class="loader">
+    <div class="loader-logo">Omoluabi Productions</div>
+  </div>
+
+  <header class="header">
     <div class="container">
       <a href="/" class="logo">Afro-Gospel Stream</a>
-      <nav class="nav" role="navigation">
+      <nav class="nav">
         <ul>
           <li><a href="/about-us">About Us</a></li>
           <li><a href="/artists">Artists</a></li>
@@ -699,459 +28,228 @@
         </ul>
       </nav>
       <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
-      <button class="menu-toggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main role="main">
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <h1 class="animated-headline">
-          Experience <em>Afro-Gospel Stream</em>
-        </h1>
-        <p class="hero-text">
-          Discover a world of uplifting Afro-gospel music with Afro-Gospel Stream. Stream your favorite artists, explore new releases, and share the joy of gospel with friends and family.
-        </p>
-        <div class="hero-buttons">
-          <a href="#my-tracks" class="btn primary">Listen Now</a>
-          <a href="/about-us" class="btn secondary">About Us</a>
+  <section class="hero">
+    <div class="container">
+      <h1>Experience Afro-Gospel Stream</h1>
+      <p class="hero-text">Discover a world of uplifting Afro-gospel music with Afro-Gospel Stream. Stream your favorite artists, explore new releases, and share the joy of gospel with friends and family.</p>
+      <div class="hero-buttons">
+        <a href="#my-tracks" class="btn primary">Listen Now</a>
+        <a href="/about-us" class="btn secondary">About Us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about-afro-gospel-stream">
+    <div class="container">
+      <h2>Our Mission & Values</h2>
+      <p>Afro-Gospel Stream is committed to sharing the divine sound of Afro-gospel music with a global audience. We focus on promoting gospel artists, fostering community, and providing an accessible, uplifting experience for all fans of gospel music.</p>
+      <div class="counters">
+        <div class="counter" data-target="1500">0k<br>Monthly Listeners</div>
+        <div class="counter" data-target="300">0k<br>Songs Streamed</div>
+        <div class="counter" data-target="500">0k<br>Active Users</div>
+        <div class="counter" data-target="200">0k<br>New Subscribers</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="artists" id="featured-artists">
+    <div class="container">
+      <h2>Featured Artists</h2>
+      <p>Discover the divine talents shaping Afro-gospel music today and explore their inspiring works.</p>
+      <div class="masonry-grid">
+        <div>Artist 1</div>
+        <div>Artist 2</div>
+        <div>Artist 3</div>
+        <div>Artist 4</div>
+        <div>Artist 5</div>
+        <div>Artist 6</div>
+        <div>Artist 7</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tracks" id="my-tracks">
+    <div class="container">
+      <h2>My Afro-Gospel Albums</h2>
+      <p>Explore our curated albums featuring soulful Afro-gospel tracks to uplift your spirit.</p>
+      <article class="album">
+        <div class="album-header" role="button" aria-expanded="false">
+          <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Neo-Gospel album cover" loading="lazy">
+          <div>
+            <h3>Neo-Gospel</h3>
+            <p>2025 • 14 Tracks</p>
+          </div>
+          <button class="album-toggle" aria-label="Toggle Neo-Gospel album tracks"><i class="fas fa-chevron-down"></i></button>
+        </div>
+        <div class="album-content">
+          <ul class="track-list">
+            <li class="track-item">
+              <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Am Grateful Lord (Instrumental) cover art" loading="lazy">
+              <div class="track-info">
+                <h3><a href="#">Am Grateful Lord (Instrumental)</a></h3>
+                <p>A soulful instrumental Afro-gospel track.</p>
+              </div>
+              <audio controls loading="lazy">
+                <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Am%20grateful%20Lord%20(Instrumental).mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </li>
+            <li class="track-item">
+              <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Am Grateful Lord cover art" loading="lazy">
+              <div class="track-info">
+                <h3><a href="#">Am Grateful Lord</a></h3>
+                <p>A heartfelt Afro-gospel song of gratitude.</p>
+              </div>
+              <audio controls loading="lazy">
+                <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Am%20grateful%20Lord.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </li>
+            <li class="track-item">
+              <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Disappoint People Early cover art" loading="lazy">
+              <div class="track-info">
+                <h3><a href="#">Disappoint People Early</a></h3>
+                <p>An inspiring Afro-gospel track about resilience.</p>
+              </div>
+              <audio controls loading="lazy">
+                <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Disappoint%20People%20Early.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </li>
+            <li class="track-item">
+              <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Holy Vibes Only (Instrumental) cover art" loading="lazy">
+              <div class="track-info">
+                <h3><a href="#">Holy Vibes Only (Instrumental)</a></h3>
+                <p>A serene instrumental Afro-gospel piece.</p>
+              </div>
+              <audio controls loading="lazy">
+                <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Holy%20Vibes%20Only%20(Instrumental).mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </li>
+            <!-- Add remaining 10 tracks with similar structure -->
+          </ul>
+        </div>
+      </article>
+      <article class="album">
+        <div class="album-header" role="button" aria-expanded="false">
+          <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Faith&B album cover" loading="lazy">
+          <div>
+            <h3>Faith&B</h3>
+            <p>2025 • 14 Tracks</p>
+          </div>
+          <button class="album-toggle" aria-label="Toggle Faith&B album tracks"><i class="fas fa-chevron-down"></i></button>
+        </div>
+        <div class="album-content">
+          <ul class="track-list">
+            <li class="track-item">
+              <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Faded Hues cover art" loading="lazy">
+              <div class="track-info">
+                <h3><a href="#">Faded Hues</a></h3>
+                <p>A soulful track from the Faith&B album.</p>
+              </div>
+              <audio controls loading="lazy">
+                <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Faded%20Hues.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </li>
+            <li class="track-item">
+              <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="False Alarm cover art" loading="lazy">
+              <div class="track-info">
+                <h3><a href="#">False Alarm</a></h3>
+                <p>An uplifting track from the Faith&B album.</p>
+              </div>
+              <audio controls loading="lazy">
+                <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/False%20Alarm.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </li>
+            <li class="track-item">
+              <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Glorified Caterpillar cover art" loading="lazy">
+              <div class="track-info">
+                <h3><a href="#">Glorified Caterpillar</a></h3>
+                <p>A transformative track from the Faith&B album.</p>
+              </div>
+              <audio controls loading="lazy">
+                <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Glorified%20Caterpillar.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </li>
+            <li class="track-item">
+              <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Hear the Earth Speak cover art" loading="lazy">
+              <div class="track-info">
+                <h3><a href="#">Hear the Earth Speak</a></h3>
+                <p>A reflective track from the Faith&B album.</p>
+              </div>
+              <audio controls loading="lazy">
+                <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Hear%20the%20Earth%20Speak.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </li>
+            <!-- Add remaining 10 tracks with similar structure -->
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="genres" id="music-genres">
+    <div class="container">
+      <div class="genres-grid">
+        <div class="genre-card">
+          <h3>Traditional Afro-Gospel</h3>
+          <p>Experience the roots of Afro-gospel with powerful vocals and timeless hymns that resonate with faith and heritage.</p>
+        </div>
+        <div class="genre-card">
+          <h3>Contemporary Afro-Gospel</h3>
+          <p>Uplifting melodies and modern arrangements that blend faith with today's sounds, inspiring a new generation.</p>
+        </div>
+        <div class="genre-card">
+          <h3>Urban Afro-Gospel</h3>
+          <p>Feel the rhythm of faith with beats and rhymes that speak to the soul, connecting urban culture with gospel messages.</p>
+        </div>
+        <div class="genre-card">
+          <h3>Instrumental Afro-Gospel</h3>
+          <p>Find peace and reflection with soothing instrumental pieces that create a serene atmosphere for prayer and meditation.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- About Afro-Gospel Stream -->
-    <section class="about" id="about-afro-gospel-stream">
-      <div class="container">
-        <div class="about-grid">
-          <div class="about-content">
-            <h2>Our Mission & Values</h2>
-            <p>
-              Afro-Gospel Stream is committed to sharing the divine sound of Afro-gospel music with a global audience. We focus on promoting gospel artists, fostering community, and providing an accessible, uplifting experience for all fans of gospel music.
-            </p>
-            <div class="counters">
-              <div class="counter" data-target="1500">0k<br>Monthly Listeners</div>
-              <div class="counter" data-target="300">0k<br>Songs Streamed</div>
-              <div class="counter" data-target="500">0k<br>Active Users</div>
-              <div class="counter" data-target="200">0k<br>New Subscribers</div>
-            </div>
-          </div>
+  <section class="listen-now" id="listen-now">
+    <div class="container">
+      <h2>Enjoy Afro-Gospel Music Now</h2>
+      <p>Discover a curated selection of uplifting Afro-gospel tracks ready for your immediate listening pleasure.</p>
+      <a href="/music" class="btn primary">Start Listening</a>
+    </div>
+  </section>
+
+  <section class="connect" id="connect-with-us">
+    <div class="container">
+      <div class="connect-grid">
+        <div class="contact-card">
+          <i class="far fa-envelope"></i>
+          <h3>Email Us</h3>
+          <p>Feel free to reach out via email for support, inquiries, or collaborations. <a href="mailto:omoluabip3ak@gmail.com">omoluabip3ak@gmail.com</a></p>
+        </div>
+        <div class="contact-card">
+          <i class="fas fa-phone-alt"></i>
+          <h3>Call Us</h3>
+          <p>Our support team is available by phone. Call us at <a href="tel:+8632613103">+1 863-261-3103</a> during business hours.</p>
+        </div>
+        <div class="contact-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Visit Us</h3>
+          <p>Come see us at <a href="https://www.google.com/maps/place/707+N+7th+St,+Fort+Pierce,+FL+34950">707 N 7th St, Fort Pierce, FL 34950</a>.</p>
         </div>
       </div>
-    </section>
+      <iframe src="https://maps.google.com/maps?q=707+N+7th+St,+Fort+Pierce,+FL+34950&t=m&z=15&output=embed&iwloc=near" title="Afro-Gospel Stream Location" loading="lazy"></iframe>
+    </div>
+  </section>
 
-    <!-- Featured Artists -->
-    <section class="artists" id="featured-artists">
-      <div class="container">
-        <h2>Featured Artists</h2>
-        <p>Discover the divine talents shaping Afro-gospel music today and explore their inspiring works.</p>
-        <div class="masonry-grid">
-          <div>Artist 1</div>
-          <div>Artist 2</div>
-          <div>Artist 3</div>
-          <div>Artist 4</div>
-          <div>Artist 5</div>
-          <div>Artist 6</div>
-          <div>Artist 7</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- My Afro-Gospel Tracks -->
-    <section class="tracks" id="my-tracks">
-      <div class="container">
-        <h2>My Afro-Gospel Albums</h2>
-        <p>Explore our curated albums featuring soulful Afro-gospel tracks to uplift your spirit.</p>
-        <!-- Neo-Gospel Album -->
-        <div class="album">
-          <div class="album-header" role="button" aria-expanded="false">
-            <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Neo-Gospel Album Cover" loading="lazy">
-            <div>
-              <h3>Neo-Gospel</h3>
-              <p>2025 • 14 Tracks</p>
-            </div>
-            <button class="album-toggle" aria-label="Toggle Album Tracks"><i class="fas fa-chevron-down"></i></button>
-          </div>
-          <div class="album-content">
-            <ul class="track-list">
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Am Grateful Lord (Instrumental) Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Am Grateful Lord (Instrumental)</a></h3>
-                  <p>A soulful instrumental Afro-gospel track to uplift your spirit.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Am%20grateful%20Lord%20(Instrumental).mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Am Grateful Lord Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Am Grateful Lord</a></h3>
-                  <p>A heartfelt Afro-gospel song of gratitude.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Am%20grateful%20Lord.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Disappoint People Early Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Disappoint People Early</a></h3>
-                  <p>An inspiring Afro-gospel track about resilience.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Disappoint%20People%20Early.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Holy Vibes Only (Instrumental) Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Holy Vibes Only (Instrumental)</a></h3>
-                  <p>A serene instrumental Afro-gospel piece.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Holy%20Vibes%20Only%20(Instrumental).mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Holy Vibes Only Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Holy Vibes Only</a></h3>
-                  <p>A vibrant Afro-gospel track filled with holy energy.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Holy%20Vibes%20Only.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Na So God Dey Do Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Na So God Dey Do</a></h3>
-                  <p>A Pidgin-infused Afro-gospel celebration of God's ways.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Na%20So%20God%20Dey%20Do.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Na You Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Na You</a></h3>
-                  <p>A soulful dedication to God in Afro-gospel style.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Na%20You.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Oil No Dry Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Oil No Dry</a></h3>
-                  <p>An uplifting Afro-gospel song about abundance.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Oil%20No%20Dry.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Oluwa You Too Good Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Oluwa You Too Good</a></h3>
-                  <p>A Yoruba-flavored Afro-gospel praise anthem.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Oluwa%20You%20Too%20Good.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Recognize Me (Instrumental) Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Recognize Me (Instrumental)</a></h3>
-                  <p>A reflective instrumental Afro-gospel track.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Recognize%20Me%20(Instrumental).mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Recognize Me Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Recognize Me</a></h3>
-                  <p>An Afro-gospel plea for divine recognition.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Recognize%20Me.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Rotten Fruit Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Rotten Fruit</a></h3>
-                  <p>A powerful Afro-gospel message of transformation.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Rotten%20Fruit.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Still I Rise to Praise Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Still I Rise to Praise</a></h3>
-                  <p>An Afro-gospel anthem of resilience and worship.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Still%20I%20Rise%20to%20Praise.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg" alt="Testimony No Dey Finish Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Testimony No Dey Finish</a></h3>
-                  <p>A Pidgin-flavored Afro-gospel song of endless praise.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Testimony%20No%20Dey%20Finish.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- Faith&B Album -->
-        <div class="album">
-          <div class="album-header" role="button" aria-expanded="false">
-            <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Faith&B Album Cover" loading="lazy">
-            <div>
-              <h3>Faith&B</h3>
-              <p>2025 • 14 Tracks</p>
-            </div>
-            <button class="album-toggle" aria-label="Toggle Album Tracks"><i class="fas fa-chevron-down"></i></button>
-          </div>
-          <div class="album-content">
-            <ul class="track-list">
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Faded Hues Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Faded Hues</a></h3>
-                  <p>A soulful track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Faded%20Hues.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="False Alarm Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">False Alarm</a></h3>
-                  <p>An uplifting track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/False%20Alarm.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Glorified Caterpillar Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Glorified Caterpillar</a></h3>
-                  <p>A transformative track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Glorified%20Caterpillar.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Hear the Earth Speak Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Hear the Earth Speak</a></h3>
-                  <p>A reflective track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Hear%20the%20Earth%20Speak.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Let Me Be Seen Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Let Me Be Seen</a></h3>
-                  <p>An empowering track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Let%20Me%20Be%20Seen.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Little Things Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Little Things</a></h3>
-                  <p>A heartfelt track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Little%20Things.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Needs Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Needs</a></h3>
-                  <p>A soulful track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Needs.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Not This Road Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Not This Road</a></h3>
-                  <p>An inspiring track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Not%20This%20Road.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Permitted Blessing Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Permitted Blessing</a></h3>
-                  <p>A blessed track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Permitted%20Blessing.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Right In Front Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Right In Front</a></h3>
-                  <p>A vibrant track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Right%20In%20Front.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Scaffolding Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Scaffolding</a></h3>
-                  <p>A supportive track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Scaffolding.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Stay Sincere Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Stay Sincere</a></h3>
-                  <p>A sincere track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Stay%20Sincere.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li class="track-item">
-                <img src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg" alt="Thank You For The Wound Thumbnail" loading="lazy">
-                <div class="track-info">
-                  <h3><a href="#">Thank You For The Wound</a></h3>
-                  <p>A grateful track from the Faith&B album.</p>
-                </div>
-                <audio controls>
-                  <source src="https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Thank%20You%20For%20The%20Wound.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Music Genres -->
-    <section class="genres" id="music-genres">
-      <div class="container">
-        <div class="genres-grid">
-          <div class="genre-card">
-            <h3>Traditional Afro-Gospel</h3>
-            <p>Experience the roots of Afro-gospel with powerful vocals and timeless hymns that resonate with faith and heritage.</p>
-          </div>
-          <div class="genre-card">
-            <h3>Contemporary Afro-Gospel</h3>
-            <p>Uplifting melodies and modern arrangements that blend faith with today's sounds, inspiring a new generation.</p>
-          </div>
-          <div class="genre-card">
-            <h3>Urban Afro-Gospel</h3>
-            <p>Feel the rhythm of faith with beats and rhymes that speak to the soul, connecting urban culture with gospel messages.</p>
-          </div>
-          <div class="genre-card">
-            <h3>Instrumental Afro-Gospel</h3>
-            <p>Find peace and reflection with soothing instrumental pieces that create a serene atmosphere for prayer and meditation.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Listen Now -->
-    <section class="listen-now" id="listen-now">
-      <div class="container">
-        <h2>Enjoy Afro-Gospel Music Now</h2>
-        <p>Discover a curated selection of uplifting Afro-gospel tracks ready for your immediate listening pleasure.</p>
-        <a href="/music" class="btn primary">Start Listening</a>
-      </div>
-    </section>
-
-    <!-- Connect With Us -->
-    <section class="connect" id="connect-with-us">
-      <div class="container">
-        <div class="connect-grid">
-          <div class="contact-card">
-            <i class="far fa-envelope"></i>
-            <h3>Email Us</h3>
-            <p>Feel free to reach out via email for support, inquiries, or collaborations. <a href="mailto:omoluabip3ak@gmail.com">omoluabip3ak@gmail.com</a></p>
-          </div>
-          <div class="contact-card">
-            <i class="fas fa-phone-alt"></i>
-            <h3>Call Us</h3>
-            <p>Our support team is available by phone. Call us at <a href="tel:+8632613103">+1 863-261-3103</a> during business hours.</p>
-          </div>
-          <div class="contact-card">
-            <i class="fas fa-map-marker-alt"></i>
-            <h3>Visit Us</h3>
-            <p>Come see us at <a href="https://www.google.com/maps/place/707+N+7th+St,+Fort+Pierce,+FL+34950">707 N 7th St, Fort Pierce, FL 34950</a>.</p>
-          </div>
-        </div>
-        <iframe src="https://maps.google.com/maps?q=707+N+7th+St,+Fort+Pierce,+FL+34950&t=m&z=15&output=embed&iwloc=near" title="Afro-Gospel Stream Location" loading="lazy"></iframe>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -1197,280 +295,29 @@
     </div>
   </footer>
 
-  <!-- Player Bar -->
   <div class="player-bar">
     <div class="controls">
-      <button aria-label="Previous" id="previous"><i class="fas fa-step-backward"></i></button>
-      <button aria-label="Play/Pause" id="play-pause"><i class="fas fa-play"></i></button>
-      <button aria-label="Next" id="next"><i class="fas fa-step-forward"></i></button>
-      <button aria-label="Repeat" id="repeat"><i class="fas fa-redo"></i></button>
-      <button aria-label="Shuffle" id="shuffle"><i class="fas fa-random"></i></button>
+      <button aria-label="Previous track" id="previous"><i class="fas fa-step-backward"></i></button>
+      <button aria-label="Play or pause track" id="play-pause"><i class="fas fa-play"></i></button>
+      <button aria-label="Next track" id="next"><i class="fas fa-step-forward"></i></button>
+      <button aria-label="Repeat track" id="repeat"><i class="fas fa-redo"></i></button>
+      <button aria-label="Shuffle playlist" id="shuffle"><i class="fas fa-random"></i></button>
     </div>
     <div class="track-info">
-      <img src="" alt="Current Track Artwork" id="player-artwork">
+      <img src="" alt="Current track artwork" id="player-artwork">
       <div>
         <h3 id="player-title"></h3>
         <p id="player-artist"></p>
       </div>
     </div>
     <div class="progress">
-      <input type="range" id="progress-bar" min="0" max="100" value="0">
+      <input type="range" id="progress-bar" min="0" max="100" value="0" aria-label="Track progress">
     </div>
     <div class="volume">
-      <button aria-label="Mute" id="mute"><i class="fas fa-volume-up"></i></button>
-      <input type="range" id="volume-bar" min="0" max="1" step="0.01" value="1">
+      <button aria-label="Mute or unmute track" id="mute"><i class="fas fa-volume-up"></i></button>
+      <input type="range" id="volume-bar" min="0" max="1" step="0.01" value="1" aria-label="Volume control">
     </div>
   </div>
 
-  <script>
-    // Sticky Header
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('.header');
-      if (window.scrollY > 100) {
-        header.classList.add('sticky');
-      } else {
-        header.classList.remove('sticky');
-      }
-    });
-
-    // Smooth Scroll with Header Offset
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          const header = document.querySelector('.header');
-          const headerHeight = header.offsetHeight;
-          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - headerHeight;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Counter Animation
-    const counters = document.querySelectorAll('.counter');
-    const animateCounter = (counter) => {
-      const target = +counter.getAttribute('data-target');
-      const count = +counter.innerText.replace('k', '');
-      const increment = target / 200;
-      if (count < target) {
-        counter.innerText = `${Math.ceil(count + increment)}k`;
-        setTimeout(() => animateCounter(counter), 10);
-      } else {
-        counter.innerText = `${target}k`;
-      }
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(counter => observer.observe(counter));
-
-    // Mobile Menu Toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav');
-    menuToggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-
-    // Album Toggle
-    document.querySelectorAll('.album-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const content = header.nextElementSibling;
-        const toggle = header.querySelector('.album-toggle');
-        const isExpanded = header.getAttribute('aria-expanded') === 'true';
-        content.classList.toggle('active');
-        header.setAttribute('aria-expanded', !isExpanded);
-        toggle.innerHTML = isExpanded ? '<i class="fas fa-chevron-down"></i>' : '<i class="fas fa-chevron-up"></i>';
-      });
-    });
-
-    // Audio Playback Control
-    let currentAudio = null;
-    let currentIndex = -1;
-    let isRepeating = false;
-    let isShuffling = false;
-    const playlist = [];
-    const audioElements = document.querySelectorAll('.track-item audio');
-
-    // Build playlist from all tracks
-    audioElements.forEach((audio, index) => {
-      const trackItem = audio.closest('.track-item');
-      const album = trackItem.closest('.album');
-      playlist.push({
-        audio,
-        index,
-        artwork: trackItem.querySelector('img').src,
-        title: trackItem.querySelector('h3 a').textContent,
-        artist: 'Omoluabi Productions',
-        album: album.querySelector('.album-header h3').textContent
-      });
-    });
-
-    // Shuffle array function
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-
-    // Play specific track
-    function playTrack(index) {
-      if (index < 0 || index >= playlist.length) return;
-      
-      if (currentAudio && currentAudio !== playlist[index].audio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-      }
-
-      currentIndex = index;
-      currentAudio = playlist[index].audio;
-      currentAudio.play();
-      updatePlayerBar();
-    }
-
-    // Update player bar
-    function updatePlayerBar() {
-      if (currentAudio && currentIndex >= 0) {
-        const track = playlist[currentIndex];
-        document.getElementById('player-artwork').src = track.artwork;
-        document.getElementById('player-title').textContent = track.title;
-        document.getElementById('player-artist').textContent = `${track.artist} - ${track.album}`;
-        playPauseBtn.innerHTML = currentAudio.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
-      } else {
-        document.getElementById('player-artwork').src = '';
-        document.getElementById('player-title').textContent = '';
-        document.getElementById('player-artist').textContent = '';
-        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-      }
-    }
-
-    // Audio event listeners
-    audioElements.forEach((audio, index) => {
-      audio.addEventListener('play', () => {
-        if (currentAudio && currentAudio !== audio) {
-          currentAudio.pause();
-          currentAudio.currentTime = 0;
-        }
-        currentAudio = audio;
-        currentIndex = index;
-        updatePlayerBar();
-      });
-
-      audio.addEventListener('timeupdate', () => {
-        if (currentAudio === audio) {
-          const progress = (audio.currentTime / audio.duration) * 100 || 0;
-          document.getElementById('progress-bar').value = progress;
-        }
-      });
-
-      audio.addEventListener('ended', () => {
-        if (isRepeating) {
-          audio.currentTime = 0;
-          audio.play();
-        } else if (isShuffling) {
-          const randomIndex = Math.floor(Math.random() * playlist.length);
-          playTrack(randomIndex);
-        } else {
-          // Play next track in sequence
-          const nextIndex = (currentIndex + 1) % playlist.length;
-          playTrack(nextIndex);
-        }
-      });
-    });
-
-    // Player Bar Controls
-    const playPauseBtn = document.getElementById('play-pause');
-    const repeatBtn = document.getElementById('repeat');
-    const shuffleBtn = document.getElementById('shuffle');
-    const previousBtn = document.getElementById('previous');
-    const nextBtn = document.getElementById('next');
-    const progressBar = document.getElementById('progress-bar');
-    const volumeBar = document.getElementById('volume-bar');
-    const muteBtn = document.getElementById('mute');
-
-    playPauseBtn.addEventListener('click', () => {
-      if (currentAudio) {
-        if (currentAudio.paused) {
-          currentAudio.play();
-        } else {
-          currentAudio.pause();
-        }
-        updatePlayerBar();
-      } else if (playlist.length > 0) {
-        // Start playing first track if none is playing
-        playTrack(0);
-      }
-    });
-
-    previousBtn.addEventListener('click', () => {
-      if (currentIndex >= 0) {
-        if (isShuffling) {
-          const randomIndex = Math.floor(Math.random() * playlist.length);
-          playTrack(randomIndex);
-        } else {
-          const prevIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-          playTrack(prevIndex);
-        }
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (currentIndex >= 0) {
-        if (isShuffling) {
-          const randomIndex = Math.floor(Math.random() * playlist.length);
-          playTrack(randomIndex);
-        } else {
-          const nextIndex = (currentIndex + 1) % playlist.length;
-          playTrack(nextIndex);
-        }
-      }
-    });
-
-    repeatBtn.addEventListener('click', () => {
-      isRepeating = !isRepeating;
-      repeatBtn.classList.toggle('active', isRepeating);
-      if (currentAudio) {
-        currentAudio.loop = isRepeating;
-      }
-    });
-
-    shuffleBtn.addEventListener('click', () => {
-      isShuffling = !isShuffling;
-      shuffleBtn.classList.toggle('active', isShuffling);
-    });
-
-    progressBar.addEventListener('input', () => {
-      if (currentAudio) {
-        const time = (progressBar.value / 100) * currentAudio.duration;
-        currentAudio.currentTime = time;
-      }
-    });
-
-    volumeBar.addEventListener('input', () => {
-      if (currentAudio) {
-        currentAudio.volume = volumeBar.value;
-      }
-    });
-
-    muteBtn.addEventListener('click', () => {
-      if (currentAudio) {
-        currentAudio.muted = !currentAudio.muted;
-        muteBtn.innerHTML = currentAudio.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
-      }
-    });
-  </script>
-</body>
+  <script defer src="/script.js"></script>
 </html>
