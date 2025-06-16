@@ -1,7 +1,3 @@
-<!-- 
-  Afro-Gospel Stream Homepage
-  Note: The files Scaffolding.mp3, Na You.mp3, and Holy Vibes Only.mp3 are present in the repository. If playback issues persist, clear your browser cache or append ?v=1 to the URLs (e.g., Scaffolding.mp3?v=1) to bypass CDN cache.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +10,10 @@
   <!-- Google Fonts: Inter for Apple Music Aesthetic -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <style>
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
     /* Reset */
     * {
       margin: 0;
@@ -297,6 +297,14 @@
     .track-item .track-info h3 {
       font-size: 16px;
       margin: 0;
+      color: var(--primary-color);
+    }
+    .track-item .track-info h3 a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .track-item .track-info h3 a:hover {
+      text-decoration: underline;
     }
     .track-item .track-info p {
       font-size: 12px;
@@ -704,7 +712,7 @@
           Discover a world of uplifting Afro-gospel music with Afro-Gospel Stream. Stream your favorite artists, explore new releases, and share the joy of gospel with friends and family.
         </p>
         <div class="hero-buttons">
-          <a href="#listen-now" class="btn primary">Listen Now</a>
+          <a href="#my-tracks" class="btn primary">Listen Now</a>
           <a href="/about-us" class="btn secondary">About Us</a>
         </div>
       </div>
@@ -1219,6 +1227,26 @@
       } else {
         header.classList.remove('sticky');
       }
+    });
+
+    // Smooth Scroll with Header Offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          const header = document.querySelector('.header');
+          const headerHeight = header.offsetHeight;
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
     });
 
     // Counter Animation
