@@ -499,6 +499,9 @@
     .player-bar button:hover {
       color: var(--secondary-color);
     }
+    .player-bar button.active {
+      color: var(--secondary-color);
+    }
     .player-bar .track-info {
       display: flex;
       align-items: center;
@@ -1197,10 +1200,11 @@
   <!-- Player Bar -->
   <div class="player-bar">
     <div class="controls">
-      <button aria-label="Previous"><i class="fas fa-step-backward"></i></button>
+      <button aria-label="Previous" id="previous"><i class="fas fa-step-backward"></i></button>
       <button aria-label="Play/Pause" id="play-pause"><i class="fas fa-play"></i></button>
-      <button aria-label="Next"><i class="fas fa-step-forward"></i></button>
+      <button aria-label="Next" id="next"><i class="fas fa-step-forward"></i></button>
       <button aria-label="Repeat" id="repeat"><i class="fas fa-redo"></i></button>
+      <button aria-label="Shuffle" id="shuffle"><i class="fas fa-random"></i></button>
     </div>
     <div class="track-info">
       <img src="" alt="Current Track Artwork" id="player-artwork">
@@ -1213,7 +1217,7 @@
       <input type="range" id="progress-bar" min="0" max="100" value="0">
     </div>
     <div class="volume">
-      <button aria-label="Mute"><i class="fas fa-volume-up"></i></button>
+      <button aria-label="Mute" id="mute"><i class="fas fa-volume-up"></i></button>
       <input type="range" id="volume-bar" min="0" max="1" step="0.01" value="1">
     </div>
   </div>
@@ -1293,42 +1297,57 @@
 
     // Audio Playback Control
     let currentAudio = null;
-    const audioElements = document.querySelectorAll('audio');
-    audioElements.forEach(audio => {
-      audio.addEventListener('play', () => {
-        if (currentAudio && currentAudio !== audio) {
-          currentAudio.pause();
-        }
-        currentAudio = audio;
-        updatePlayerBar();
-      });
-      audio.addEventListener('timeupdate', () => {
-        if (currentAudio === audio) {
-          const progress = (audio.currentTime / audio.duration) * 100 || 0;
-          document.getElementById('progress-bar').value = progress;
-        }
+    let currentIndex = -1;
+    let isRepeating = false;
+    let isShuffling = false;
+    const playlist = [];
+    const audioElements = document.querySelectorAll('.track-item audio');
+
+    // Build playlist from all tracks
+    audioElements.forEach((audio, index) => {
+      const trackItem = audio.closest('.track-item');
+      const album = trackItem.closest('.album');
+      playlist.push({
+        audio,
+        index,
+        artwork: trackItem.querySelector('img').src,
+        title: trackItem.querySelector('h3 a').textContent,
+        artist: 'Omoluabi Productions',
+        album: album.querySelector('.album-header h3').textContent
       });
     });
 
-    // Player Bar Controls
-    const playPauseBtn = document.getElementById('play-pause');
-    const repeatBtn = document.getElementById('repeat');
-    const progressBar = document.getElementById('progress-bar');
-    const volumeBar = document.getElementById('volume-bar');
-    let isRepeating = false;
+    // Shuffle array function
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
 
+    // Play specific track
+    function playTrack(index) {
+      if (index < 0 || index >= playlist.length) return;
+      
+      if (currentAudio && currentAudio !== playlist[index].audio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+
+      currentIndex = index;
+      currentAudio = playlist[index].audio;
+      currentAudio.play();
+      updatePlayerBar();
+    }
+
+    // Update player bar
     function updatePlayerBar() {
-      if (currentAudio) {
-        const trackItem = currentAudio.closest('.track-item');
-        const artwork = trackItem.querySelector('img').src;
-        const title = trackItem.querySelector('h3 a').textContent;
-        const artist = 'Omoluabi Productions'; // Placeholder, adjust as needed
-        const album = trackItem.closest('.album').querySelector('.album-header h3').textContent;
-
-        document.getElementById('player-artwork').src = artwork;
-        document.getElementById('player-title').textContent = title;
-        document.getElementById('player-artist').textContent = `${artist} - ${album}`;
-
+      if (currentAudio && currentIndex >= 0) {
+        const track = playlist[currentIndex];
+        document.getElementById('player-artwork').src = track.artwork;
+        document.getElementById('player-title').textContent = track.title;
+        document.getElementById('player-artist').textContent = `${track.artist} - ${track.album}`;
         playPauseBtn.innerHTML = currentAudio.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
       } else {
         document.getElementById('player-artwork').src = '';
@@ -1338,6 +1357,50 @@
       }
     }
 
+    // Audio event listeners
+    audioElements.forEach((audio, index) => {
+      audio.addEventListener('play', () => {
+        if (currentAudio && currentAudio !== audio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+        }
+        currentAudio = audio;
+        currentIndex = index;
+        updatePlayerBar();
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (currentAudio === audio) {
+          const progress = (audio.currentTime / audio.duration) * 100 || 0;
+          document.getElementById('progress-bar').value = progress;
+        }
+      });
+
+      audio.addEventListener('ended', () => {
+        if (isRepeating) {
+          audio.currentTime = 0;
+          audio.play();
+        } else if (isShuffling) {
+          const randomIndex = Math.floor(Math.random() * playlist.length);
+          playTrack(randomIndex);
+        } else {
+          // Play next track in sequence
+          const nextIndex = (currentIndex + 1) % playlist.length;
+          playTrack(nextIndex);
+        }
+      });
+    });
+
+    // Player Bar Controls
+    const playPauseBtn = document.getElementById('play-pause');
+    const repeatBtn = document.getElementById('repeat');
+    const shuffleBtn = document.getElementById('shuffle');
+    const previousBtn = document.getElementById('previous');
+    const nextBtn = document.getElementById('next');
+    const progressBar = document.getElementById('progress-bar');
+    const volumeBar = document.getElementById('volume-bar');
+    const muteBtn = document.getElementById('mute');
+
     playPauseBtn.addEventListener('click', () => {
       if (currentAudio) {
         if (currentAudio.paused) {
@@ -1346,24 +1409,33 @@
           currentAudio.pause();
         }
         updatePlayerBar();
+      } else if (playlist.length > 0) {
+        // Start playing first track if none is playing
+        playTrack(0);
       }
     });
 
-    document.querySelector('.controls .fa-step-backward').addEventListener('click', () => {
-      if (currentAudio) {
-        const tracks = Array.from(currentAudio.closest('.album-content').querySelectorAll('audio'));
-        const currentIndex = tracks.indexOf(currentAudio);
-        const prevIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-        tracks[prevIndex].play();
+    previousBtn.addEventListener('click', () => {
+      if (currentIndex >= 0) {
+        if (isShuffling) {
+          const randomIndex = Math.floor(Math.random() * playlist.length);
+          playTrack(randomIndex);
+        } else {
+          const prevIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+          playTrack(prevIndex);
+        }
       }
     });
 
-    document.querySelector('.controls .fa-step-forward').addEventListener('click', () => {
-      if (currentAudio) {
-        const tracks = Array.from(currentAudio.closest('.album-content').querySelectorAll('audio'));
-        const currentIndex = tracks.indexOf(currentAudio);
-        const nextIndex = (currentIndex + 1) % tracks.length;
-        tracks[nextIndex].play();
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex >= 0) {
+        if (isShuffling) {
+          const randomIndex = Math.floor(Math.random() * playlist.length);
+          playTrack(randomIndex);
+        } else {
+          const nextIndex = (currentIndex + 1) % playlist.length;
+          playTrack(nextIndex);
+        }
       }
     });
 
@@ -1373,6 +1445,11 @@
       if (currentAudio) {
         currentAudio.loop = isRepeating;
       }
+    });
+
+    shuffleBtn.addEventListener('click', () => {
+      isShuffling = !isShuffling;
+      shuffleBtn.classList.toggle('active', isShuffling);
     });
 
     progressBar.addEventListener('input', () => {
@@ -1385,6 +1462,13 @@
     volumeBar.addEventListener('input', () => {
       if (currentAudio) {
         currentAudio.volume = volumeBar.value;
+      }
+    });
+
+    muteBtn.addEventListener('click', () => {
+      if (currentAudio) {
+        currentAudio.muted = !currentAudio.muted;
+        muteBtn.innerHTML = currentAudio.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
       }
     });
   </script>
