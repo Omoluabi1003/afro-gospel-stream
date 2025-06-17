@@ -113,6 +113,7 @@ function playTrack(index) {
   }
   currentIndex = index;
   currentAudio = playlist[index].audio;
+  progressBar.value = 0;
   currentAudio.play();
   updatePlayerBar();
 }
@@ -161,9 +162,10 @@ audioElements.forEach((audio, index) => {
     } else if (isShuffling) {
       const randomIndex = Math.floor(Math.random() * playlist.length);
       playTrack(randomIndex);
+    } else if (currentIndex + 1 < playlist.length) {
+      playTrack(currentIndex + 1);
     } else {
-      const nextIndex = (currentIndex + 1) % playlist.length;
-      playTrack(nextIndex);
+      resetPlayerUI();
     }
   });
 });
@@ -219,6 +221,7 @@ shuffleBtn.addEventListener('click', () => {
   isShuffling = !isShuffling;
   shuffleBtn.classList.toggle('active', isShuffling);
   shuffleBtn.setAttribute('aria-label', isShuffling ? 'Disable shuffle' : 'Enable shuffle');
+  shuffleBtn.setAttribute('aria-pressed', isShuffling);
 });
 
 progressBar.addEventListener('input', () => {
@@ -249,4 +252,16 @@ if ('serviceWorker' in navigator) {
   }).catch(error => {
     console.error('Service Worker registration failed:', error);
   });
+}
+
+// Reset player to initial state
+function resetPlayerUI() {
+  progressBar.value = 0;
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+  currentAudio = null;
+  currentIndex = -1;
+  updatePlayerBar();
 }

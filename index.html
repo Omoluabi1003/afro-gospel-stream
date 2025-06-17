@@ -503,6 +503,9 @@
     .player-bar button.active {
       color: var(--secondary-color);
     }
+    .player-bar button[aria-pressed="true"] {
+      color: var(--secondary-color);
+    }
     .player-bar .track-info {
       display: flex;
       align-items: center;
@@ -687,6 +690,10 @@
   </style>
 </head>
 <body>
+  <!-- Page Loader -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-logo">Afro-Gospel Stream</div>
+  </div>
   <!-- Header -->
   <header class="header" role="banner">
     <div class="container">
@@ -1205,7 +1212,7 @@
       <button aria-label="Play/Pause" id="play-pause"><i class="fas fa-play"></i></button>
       <button aria-label="Next" id="next"><i class="fas fa-step-forward"></i></button>
       <button aria-label="Repeat" id="repeat"><i class="fas fa-redo"></i></button>
-      <button aria-label="Shuffle" id="shuffle"><i class="fas fa-random"></i></button>
+      <button aria-label="Shuffle" id="shuffle" aria-pressed="false"><i class="fas fa-random"></i></button>
     </div>
     <div class="track-info">
       <img src="" alt="Current Track Artwork" id="player-artwork">
@@ -1330,7 +1337,7 @@
     // Play specific track
     function playTrack(index) {
       if (index < 0 || index >= playlist.length) return;
-      
+
       if (currentAudio && currentAudio !== playlist[index].audio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
@@ -1338,6 +1345,7 @@
 
       currentIndex = index;
       currentAudio = playlist[index].audio;
+      document.getElementById('progress-bar').value = 0;
       currentAudio.play();
       updatePlayerBar();
     }
@@ -1356,6 +1364,17 @@
         document.getElementById('player-artist').textContent = '';
         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
       }
+    }
+
+    function resetPlayerUI() {
+      document.getElementById('progress-bar').value = 0;
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentAudio = null;
+      currentIndex = -1;
+      updatePlayerBar();
     }
 
     // Audio event listeners
@@ -1384,10 +1403,11 @@
         } else if (isShuffling) {
           const randomIndex = Math.floor(Math.random() * playlist.length);
           playTrack(randomIndex);
-        } else {
-          // Play next track in sequence
-          const nextIndex = (currentIndex + 1) % playlist.length;
+        } else if (currentIndex + 1 < playlist.length) {
+          const nextIndex = currentIndex + 1;
           playTrack(nextIndex);
+        } else {
+          resetPlayerUI();
         }
       });
     });
@@ -1451,6 +1471,7 @@
     shuffleBtn.addEventListener('click', () => {
       isShuffling = !isShuffling;
       shuffleBtn.classList.toggle('active', isShuffling);
+      shuffleBtn.setAttribute('aria-pressed', isShuffling);
     });
 
     progressBar.addEventListener('input', () => {
@@ -1473,5 +1494,6 @@
       }
     });
   </script>
+  <script src="data.js"></script>
 </body>
 </html>
