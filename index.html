@@ -339,6 +339,34 @@
     .genre-card:hover {
       transform: translateY(-5px);
     }
+    /* Radio */
+    .radio {
+      padding: 80px 0;
+      background: var(--bg-inverse);
+      color: var(--text-inverse);
+    }
+    .radio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .radio-station {
+      text-align: center;
+      background: var(--glass-bg);
+      border: var(--glass-border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .radio-station img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .radio-station audio {
+      width: 100%;
+      margin-top: 10px;
+    }
     .genre-card h3 {
       font-size: 20px;
       margin-bottom: 10px;
@@ -1101,6 +1129,23 @@
       </div>
     </section>
 
+    <!-- Ariyo-AI Albums -->
+    <section class="tracks" id="ai-albums">
+      <div class="container">
+        <h2>Ariyo-AI Albums</h2>
+        <p>Selections from the Ariyo-AI project.</p>
+        <div id="ariyo-album-container"></div>
+      </div>
+    </section>
+
+    <!-- Radio Stations -->
+    <section class="radio" id="radio-stations">
+      <div class="container">
+        <h2>Radio Stations</h2>
+        <div id="radio-container" class="radio-grid"></div>
+      </div>
+    </section>
+
     <!-- Music Genres -->
     <section class="genres" id="music-genres">
       <div class="container">
@@ -1230,270 +1275,7 @@
     </div>
   </div>
 
-  <script>
-    // Sticky Header
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('.header');
-      if (window.scrollY > 100) {
-        header.classList.add('sticky');
-      } else {
-        header.classList.remove('sticky');
-      }
-    });
-
-    // Smooth Scroll with Header Offset
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          const header = document.querySelector('.header');
-          const headerHeight = header.offsetHeight;
-          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - headerHeight;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Counter Animation
-    const counters = document.querySelectorAll('.counter');
-    const animateCounter = (counter) => {
-      const target = +counter.getAttribute('data-target');
-      const count = +counter.innerText.replace('k', '');
-      const increment = target / 200;
-      if (count < target) {
-        counter.innerText = `${Math.ceil(count + increment)}k`;
-        setTimeout(() => animateCounter(counter), 10);
-      } else {
-        counter.innerText = `${target}k`;
-      }
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(counter => observer.observe(counter));
-
-    // Mobile Menu Toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav');
-    menuToggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-
-    // Album Toggle
-    document.querySelectorAll('.album-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const content = header.nextElementSibling;
-        const toggle = header.querySelector('.album-toggle');
-        const isExpanded = header.getAttribute('aria-expanded') === 'true';
-        content.classList.toggle('active');
-        header.setAttribute('aria-expanded', !isExpanded);
-        toggle.innerHTML = isExpanded ? '<i class="fas fa-chevron-down"></i>' : '<i class="fas fa-chevron-up"></i>';
-      });
-    });
-
-    // Audio Playback Control
-    let currentAudio = null;
-    let currentIndex = -1;
-    let isRepeating = false;
-    let isShuffling = false;
-    const playlist = [];
-    const audioElements = document.querySelectorAll('.track-item audio');
-
-    // Build playlist from all tracks
-    audioElements.forEach((audio, index) => {
-      const trackItem = audio.closest('.track-item');
-      const album = trackItem.closest('.album');
-      playlist.push({
-        audio,
-        index,
-        artwork: trackItem.querySelector('img').src,
-        title: trackItem.querySelector('h3 a').textContent,
-        artist: 'Omoluabi Productions',
-        album: album.querySelector('.album-header h3').textContent
-      });
-    });
-
-    // Shuffle array function
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-
-    // Play specific track
-    function playTrack(index) {
-      if (index < 0 || index >= playlist.length) return;
-
-      if (currentAudio && currentAudio !== playlist[index].audio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-      }
-
-      currentIndex = index;
-      currentAudio = playlist[index].audio;
-      document.getElementById('progress-bar').value = 0;
-      currentAudio.play();
-      updatePlayerBar();
-    }
-
-    // Update player bar
-    function updatePlayerBar() {
-      if (currentAudio && currentIndex >= 0) {
-        const track = playlist[currentIndex];
-        document.getElementById('player-artwork').src = track.artwork;
-        document.getElementById('player-title').textContent = track.title;
-        document.getElementById('player-artist').textContent = `${track.artist} - ${track.album}`;
-        playPauseBtn.innerHTML = currentAudio.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
-      } else {
-        document.getElementById('player-artwork').src = '';
-        document.getElementById('player-title').textContent = '';
-        document.getElementById('player-artist').textContent = '';
-        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-      }
-    }
-
-    function resetPlayerUI() {
-      document.getElementById('progress-bar').value = 0;
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-      }
-      currentAudio = null;
-      currentIndex = -1;
-      updatePlayerBar();
-    }
-
-    // Audio event listeners
-    audioElements.forEach((audio, index) => {
-      audio.addEventListener('play', () => {
-        if (currentAudio && currentAudio !== audio) {
-          currentAudio.pause();
-          currentAudio.currentTime = 0;
-        }
-        currentAudio = audio;
-        currentIndex = index;
-        updatePlayerBar();
-      });
-
-      audio.addEventListener('timeupdate', () => {
-        if (currentAudio === audio) {
-          const progress = (audio.currentTime / audio.duration) * 100 || 0;
-          document.getElementById('progress-bar').value = progress;
-        }
-      });
-
-      audio.addEventListener('ended', () => {
-        if (isRepeating) {
-          audio.currentTime = 0;
-          audio.play();
-        } else if (isShuffling) {
-          const randomIndex = Math.floor(Math.random() * playlist.length);
-          playTrack(randomIndex);
-        } else if (currentIndex + 1 < playlist.length) {
-          const nextIndex = currentIndex + 1;
-          playTrack(nextIndex);
-        } else {
-          resetPlayerUI();
-        }
-      });
-    });
-
-    // Player Bar Controls
-    const playPauseBtn = document.getElementById('play-pause');
-    const repeatBtn = document.getElementById('repeat');
-    const shuffleBtn = document.getElementById('shuffle');
-    const previousBtn = document.getElementById('previous');
-    const nextBtn = document.getElementById('next');
-    const progressBar = document.getElementById('progress-bar');
-    const volumeBar = document.getElementById('volume-bar');
-    const muteBtn = document.getElementById('mute');
-
-    playPauseBtn.addEventListener('click', () => {
-      if (currentAudio) {
-        if (currentAudio.paused) {
-          currentAudio.play();
-        } else {
-          currentAudio.pause();
-        }
-        updatePlayerBar();
-      } else if (playlist.length > 0) {
-        // Start playing first track if none is playing
-        playTrack(0);
-      }
-    });
-
-    previousBtn.addEventListener('click', () => {
-      if (currentIndex >= 0) {
-        if (isShuffling) {
-          const randomIndex = Math.floor(Math.random() * playlist.length);
-          playTrack(randomIndex);
-        } else {
-          const prevIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-          playTrack(prevIndex);
-        }
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (currentIndex >= 0) {
-        if (isShuffling) {
-          const randomIndex = Math.floor(Math.random() * playlist.length);
-          playTrack(randomIndex);
-        } else {
-          const nextIndex = (currentIndex + 1) % playlist.length;
-          playTrack(nextIndex);
-        }
-      }
-    });
-
-    repeatBtn.addEventListener('click', () => {
-      isRepeating = !isRepeating;
-      repeatBtn.classList.toggle('active', isRepeating);
-      if (currentAudio) {
-        currentAudio.loop = isRepeating;
-      }
-    });
-
-    shuffleBtn.addEventListener('click', () => {
-      isShuffling = !isShuffling;
-      shuffleBtn.classList.toggle('active', isShuffling);
-      shuffleBtn.setAttribute('aria-pressed', isShuffling);
-    });
-
-    progressBar.addEventListener('input', () => {
-      if (currentAudio) {
-        const time = (progressBar.value / 100) * currentAudio.duration;
-        currentAudio.currentTime = time;
-      }
-    });
-
-    volumeBar.addEventListener('input', () => {
-      if (currentAudio) {
-        currentAudio.volume = volumeBar.value;
-      }
-    });
-
-    muteBtn.addEventListener('click', () => {
-      if (currentAudio) {
-        currentAudio.muted = !currentAudio.muted;
-        muteBtn.innerHTML = currentAudio.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
-      }
-    });
-  </script>
   <script src="data.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

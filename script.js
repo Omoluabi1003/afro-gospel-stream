@@ -1,18 +1,97 @@
-// Cached DOM elements
-const header = document.querySelector('.header');
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav');
-const counters = document.querySelectorAll('.counter');
-const albumHeaders = document.querySelectorAll('.album-header');
-const playPauseBtn = document.getElementById('play-pause');
-const repeatBtn = document.getElementById('repeat');
-const shuffleBtn = document.getElementById('shuffle');
-const previousBtn = document.getElementById('previous');
-const nextBtn = document.getElementById('next');
-const progressBar = document.getElementById('progress-bar');
-const volumeBar = document.getElementById('volume-bar');
-const muteBtn = document.getElementById('mute');
-const loader = document.querySelector('.loader');
+document.addEventListener('DOMContentLoaded', () => {
+  // Cached DOM elements
+  const header = document.querySelector('.header');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav');
+  const counters = document.querySelectorAll('.counter');
+  const playPauseBtn = document.getElementById('play-pause');
+  const repeatBtn = document.getElementById('repeat');
+  const shuffleBtn = document.getElementById('shuffle');
+  const previousBtn = document.getElementById('previous');
+  const nextBtn = document.getElementById('next');
+  const progressBar = document.getElementById('progress-bar');
+  const volumeBar = document.getElementById('volume-bar');
+  const muteBtn = document.getElementById('mute');
+  const loader = document.querySelector('.loader');
+
+  // Insert albums and radio stations from data.js
+  function renderAriyoContent() {
+    if (typeof albums !== 'undefined') {
+      const container = document.getElementById('ariyo-album-container');
+      if (container) {
+        albums.forEach(album => {
+          const albumDiv = document.createElement('div');
+          albumDiv.className = 'album';
+
+          const headerDiv = document.createElement('div');
+          headerDiv.className = 'album-header';
+          headerDiv.setAttribute('role', 'button');
+          headerDiv.setAttribute('aria-expanded', 'false');
+          headerDiv.innerHTML = `
+            <img src="${album.cover}" alt="${album.name} Cover" loading="lazy">
+            <div>
+              <h3>${album.name}</h3>
+              <p>${album.tracks.length} Tracks</p>
+            </div>
+            <button class="album-toggle" aria-label="Toggle Album Tracks"><i class="fas fa-chevron-down"></i></button>
+          `;
+
+          const contentDiv = document.createElement('div');
+          contentDiv.className = 'album-content';
+          const ul = document.createElement('ul');
+          ul.className = 'track-list';
+
+          album.tracks.forEach(track => {
+            const li = document.createElement('li');
+            li.className = 'track-item';
+            li.innerHTML = `
+              <img src="${album.cover}" alt="${track.title} Thumbnail" loading="lazy">
+              <div class="track-info">
+                <h3><a href="#">${track.title}</a></h3>
+                <p>${album.name}</p>
+              </div>
+              <audio controls>
+                <source src="${track.src}" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            `;
+            ul.appendChild(li);
+          });
+
+          contentDiv.appendChild(ul);
+          albumDiv.appendChild(headerDiv);
+          albumDiv.appendChild(contentDiv);
+          container.appendChild(albumDiv);
+        });
+      }
+    }
+
+    if (typeof radioStations !== 'undefined') {
+      const radioContainer = document.getElementById('radio-container');
+      if (radioContainer) {
+        radioStations.forEach(station => {
+          const stationDiv = document.createElement('div');
+          stationDiv.className = 'radio-station';
+          stationDiv.innerHTML = `
+            <img src="${station.logo}" alt="${station.name} logo" loading="lazy">
+            <div>
+              <h3>${station.name}</h3>
+              <p>${station.location}</p>
+              <audio controls>
+                <source src="${station.url}" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+          `;
+          radioContainer.appendChild(stationDiv);
+        });
+      }
+    }
+  }
+
+  renderAriyoContent();
+
+  const albumHeaders = document.querySelectorAll('.album-header');
 
 // Sticky Header
 window.addEventListener('scroll', () => {
@@ -265,3 +344,5 @@ function resetPlayerUI() {
   currentIndex = -1;
   updatePlayerBar();
 }
+
+});
