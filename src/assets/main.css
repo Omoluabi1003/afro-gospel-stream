@@ -1,0 +1,129 @@
+/* main.css - Styles for App.vue and overall layout */
+
+#app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--primary-bg-color); /* Defined in base.css */
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(10, 15, 30, 0.8); /* Slightly transparent header */
+  backdrop-filter: blur(5px); /* Glassmorphism effect for header */
+  border-bottom: 1px solid var(--border-color);
+  position: fixed; /* Sticky header */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  height: 70px; /* Fixed height for header */
+}
+
+.logo {
+  font-family: var(--font-family-primary);
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--accent-color-primary);
+  text-shadow: var(--glow-shadow-primary);
+  cursor: default; /* Or make it a link to home */
+}
+
+.main-nav a {
+  font-family: var(--font-family-secondary);
+  color: var(--text-color-secondary);
+  margin-left: 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active { /* Add 'active' class for current page link */
+  color: var(--accent-color-primary);
+  text-shadow: 0 0 3px var(--accent-color-primary);
+}
+
+.voice-nav-btn {
+  background: none;
+  border: none;
+  color: var(--text-color-secondary);
+  margin-left: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.voice-nav-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.voice-nav-btn:hover {
+  color: var(--accent-color-primary);
+  transform: scale(1.1);
+}
+
+.content-area {
+  flex-grow: 1;
+  padding-top: 70px; /* Account for fixed header height */
+  /* No specific padding here, let child components manage their padding */
+}
+
+.app-footer {
+  padding: 1.5rem 2rem;
+  text-align: center;
+  background-color: rgba(10, 15, 30, 0.9);
+  border-top: 1px solid var(--border-color);
+  font-family: var(--font-family-secondary);
+  font-size: 0.9rem;
+  color: var(--text-color-muted);
+}
+
+/* Responsive adjustments for header and navigation */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0.75rem 1rem;
+    height: 60px;
+  }
+  .content-area {
+    padding-top: 60px; /* Adjust for smaller header */
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+  .main-nav a {
+    margin-left: 0.75rem;
+    font-size: 0.9rem;
+  }
+  .main-nav .voice-nav-btn {
+    margin-left: 0.75rem;
+  }
+  .voice-nav-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-nav {
+    /* Consider a hamburger menu for very small screens if nav items grow */
+    display: flex;
+    align-items: center;
+  }
+  .main-nav a {
+    margin-left: 0.5rem;
+    font-size: 0.8rem; /* Even smaller for tight spaces */
+  }
+  .main-nav a:first-child {
+      margin-left: 0; /* Remove margin for the first item if needed */
+  }
+   .voice-nav-btn {
+    padding: 0.3rem;
+  }
+}
