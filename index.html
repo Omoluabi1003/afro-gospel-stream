@@ -83,7 +83,8 @@
                 </div>
             </div>
             -->
-             <p>Album and track listings would appear here. Currently, `script.js` will likely build an empty playlist if no `.track-item audio` elements are present.</p>
+            <!-- This paragraph will be removed by script.js when albums are rendered -->
+             <p>Loading albums...</p>
         </section>
 
         <section id="counters-section">
@@ -124,7 +125,8 @@
         </div>
     </div>
 
-    <!-- Load the Afro-Gospel app's main script -->
+    <!-- Load data first, then the main script -->
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
