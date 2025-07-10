@@ -2,24 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico"> <!-- Create public/favicon.ico -->
+    <link rel="icon" href="icon-192.png"> <!-- Using root icon-192.png as favicon -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A captivating futuristic progressive web application.">
+    <meta name="description" content="Afro-Gospel Stream - Music Player">
 
     <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#1a1a2e"> <!-- Matches manifest.json -->
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png"> <!-- Main icon for iOS -->
-    <link rel="manifest" href="/manifest.json"> <!-- Correct path for Vite -->
+    <!-- Theme color will be updated based on Afro-Gospel manifest or new futuristic styling -->
+    <meta name="theme-color" content="#008000"> <!-- Default from Afro-Gospel manifest.json -->
+    <link rel="apple-touch-icon" href="icon-192.png"> <!-- Main icon for iOS, from root -->
+    <link rel="manifest" href="manifest.json"> <!-- Points to the root manifest for Afro-Gospel -->
 
-    <!-- Preconnect to Google Fonts -->
+    <!-- Preconnect to Google Fonts (Orbitron and Roboto were for the Vue PWA, review if needed for Afro-Gospel futuristic theme) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Keeping these fonts for now, they might be useful for the futuristic theme -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <title>Futuristic PWA Showcase</title> <!-- Title matches manifest name -->
+    <!-- Link to the Afro-Gospel app's stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link to the new Futuristic Theme stylesheet (overrides styles.css where applicable) -->
+    <link rel="stylesheet" href="futuristic_theme.css">
+
+    <title>Afro-Gospel Stream</title> <!-- Updated title for Afro-Gospel app -->
 </head>
 <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <!-- The div#app was for the Vue app. The Afro-Gospel app (script.js) might have its own structure or append to body.
+         If script.js expects a specific container, this might need adjustment later.
+         For now, I'll remove it to prevent conflicts. I'll check script.js later to see if it needs a specific mount point.
+    -->
+
+    <!-- Load the Afro-Gospel app's main script -->
+    <!-- <script type="module" src="/src/main.js"></script> -->
+    <script src="script.js"></script>
 </body>
 </html>
