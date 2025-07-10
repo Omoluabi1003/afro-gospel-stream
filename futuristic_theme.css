@@ -1,0 +1,116 @@
+/* Futuristic Theme Base Styles */
+
+:root {
+  /* Futuristic Theme Variables (inspired by src/assets/base.css) */
+  --primary-bg-color: #0a0f1e;       /* Deep dark blue */
+  --secondary-bg-color: #1a1a2e;     /* Slightly lighter dark blue for cards/sections */
+
+  --text-color-primary: #ffffff;     /* White for primary text */
+  --text-color-secondary: #b0b0c0;   /* Lighter grey for secondary text */
+  --text-color-muted: #7f8c8d;       /* Muted grey */
+
+  --accent-color-primary: #00ffff;   /* Neon Cyan */
+  --accent-color-secondary: #ff00ff; /* Neon Pink/Magenta */
+  --accent-color-tertiary: #39ff14;  /* Neon Green */
+
+  --border-color-futuristic: rgba(0, 255, 255, 0.3); /* Cyan, semi-transparent */
+
+  --font-family-primary: 'Orbitron', sans-serif;    /* Futuristic font for headings */
+  --font-family-secondary: 'Roboto', sans-serif;    /* Modern sans-serif for body */
+
+  --glow-shadow-primary: 0 0 5px var(--accent-color-primary), 0 0 10px var(--accent-color-primary), 0 0 15px var(--accent-color-primary);
+  --glow-shadow-secondary: 0 0 5px var(--accent-color-secondary), 0 0 10px var(--accent-color-secondary), 0 0 15px var(--accent-color-secondary);
+
+  /* Override old variables directly if they are used by styles.css that we don't touch initially */
+  --primary-color: var(--accent-color-primary);
+  --secondary-color: var(--accent-color-secondary);
+  --bg-light: var(--secondary-bg-color);
+  --bg-dark: var(--primary-bg-color);
+  --text-light: var(--text-color-primary);
+  --text-dark: var(--text-color-secondary);
+  --border-color: var(--border-color-futuristic);
+}
+
+body {
+  font-family: var(--font-family-secondary) !important; /* Use !important to ensure override */
+  line-height: 1.6 !important;
+  color: var(--text-color-secondary) !important;
+  background: var(--primary-bg-color) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color-primary);
+  border-radius: 10px;
+  border: 2px solid var(--primary-bg-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-color-secondary);
+}
+
+/* General element styling for headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-primary) !important; /* Use !important */
+  color: var(--text-color-primary) !important;
+  margin-bottom: 0.75em;
+  letter-spacing: 1px;
+}
+
+/* General link styling */
+a {
+  color: var(--accent-color-primary) !important; /* Use !important */
+  text-decoration: none !important;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-color-secondary) !important; /* Use !important */
+}
+
+/* Utility classes for futuristic effects */
+.text-glow-primary {
+  text-shadow: var(--glow-shadow-primary);
+}
+
+.text-glow-secondary {
+  text-shadow: var(--glow-shadow-secondary);
+}
+
+.border-glow-primary {
+  border: 1px solid var(--accent-color-primary);
+  box-shadow: var(--glow-shadow-primary);
+}
+
+/* Overrides for specific elements from styles.css will go here later */
+/* For example: */
+/*
+.header {
+  background: rgba(10, 15, 30, 0.8) !important;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 5px rgba(0, 255, 255, 0.2) !important;
+  border-bottom: 1px solid var(--border-color-futuristic) !important;
+  position: sticky !important;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: var(--font-family-primary) !important;
+  color: var(--accent-color-primary) !important;
+  text-shadow: var(--glow-shadow-primary) !important;
+}
+*/
+/* More specific overrides will be added progressively. */
