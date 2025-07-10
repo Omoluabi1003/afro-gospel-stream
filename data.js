@@ -57,6 +57,46 @@ const albums = [
       { src: 'https://raw.githubusercontent.com/Omoluabi1003/Ariyo-AI/main/Gbamsolutely.mp3', title: 'Gbamsolutely' },
       { src: 'https://raw.githubusercontent.com/Omoluabi1003/Ariyo-AI/main/Mic%20No%20Be%20For%20Waist.mp3', title: 'Mic No Be For Waist' }
     ]
+  },
+  {
+    name: 'Holy Vibes Only',
+    cover: './Neo-Soul.jpg', // Relative path for local file
+    tracks: [
+      { src: './Am grateful Lord (Instrumental).mp3', title: 'Am grateful Lord (Instrumental)' },
+      { src: './Am grateful Lord.mp3', title: 'Am grateful Lord' },
+      { src: './Holy Vibes Only (Instrumental).mp3', title: 'Holy Vibes Only (Instrumental)' },
+      { src: './Holy Vibes Only.mp3', title: 'Holy Vibes Only' },
+      { src: './Na So God Dey Do.mp3', title: 'Na So God Dey Do' },
+      { src: './Na You.mp3', title: 'Na You' },
+      { src: './Oil No Dry.mp3', title: 'Oil No Dry' },
+      { src: './Oluwa You Too Good.mp3', title: 'Oluwa You Too Good' },
+      { src: './Recognize Me (Instrumental).mp3', title: 'Recognize Me (Instrumental)' },
+      { src: './Recognize Me.mp3', title: 'Recognize Me' },
+      { src: './Rotten Fruit.mp3', title: 'Rotten Fruit' },
+      { src: './Still I Rise to Praise.mp3', title: 'Still I Rise to Praise' },
+      { src: './Testimony No Dey Finish.mp3', title: 'Testimony No Dey Finish' }
+    ]
+  },
+  {
+    name: 'Needs',
+    cover: './FaithandB.jpg', // Relative path for local file
+    tracks: [
+      { src: './Disappoint People Early.mp3', title: 'Disappoint People Early' },
+      { src: './Faded Hues.mp3', title: 'Faded Hues' },
+      { src: './False Alarm.mp3', title: 'False Alarm' },
+      { src: './Glorified Caterpillar.mp3', title: 'Glorified Caterpillar' },
+      { src: './Hear the Earth Speak.mp3', title: 'Hear the Earth Speak' },
+      { src: './Let Me Be Seen.mp3', title: 'Let Me Be Seen' },
+      { src: './Little Things.mp3', title: 'Little Things' },
+      { src: './Needs.mp3', title: 'Needs' },
+      { src: './Not This Road.mp3', title: 'Not This Road' },
+      { src: './Permitted Blessing.mp3', title: 'Permitted Blessing' },
+      { src: './Right In Front.mp3', title: 'Right In Front' },
+      { src: './Scaffolding.mp3', title: 'Scaffolding' },
+      { src: './Stay Sincere.mp3', title: 'Stay Sincere' },
+      { src: './Thank You For The Wound.mp3', title: 'Thank You For The Wound' },
+      { src: './The Weight You Carry.mp3', title: 'The Weight You Carry' }
+    ]
   }
 ];
 

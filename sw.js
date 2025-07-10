@@ -3,18 +3,51 @@ const urlsToCache = [
   '/',
   '/index.html',
   '/styles.css',
+  '/futuristic_theme.css', // Added new theme file
   '/script.js',
+  '/data.js', // Added data file
+  // External assets
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
-  'https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Neo-Soul.jpg',
-  'https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/FaithandB.jpg',
-  // Cache a few instrumental tracks for offline listening (to keep cache size manageable)
-  'https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Am%20grateful%20Lord%20(Instrumental).mp3',
-  'https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Holy%20Vibes%20Only%20(Instrumental).mp3',
-  'https://raw.githubusercontent.com/Omoluabi1003/afro-gospel-stream/main/Recognize%20Me%20(Instrumental).mp3',
+  'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap', // Updated font
+  // Local Cover Art
+  '/Neo-Soul.jpg',
+  '/FaithandB.jpg',
+  // Local MP3s for 'Holy Vibes Only' album
+  '/Am grateful Lord (Instrumental).mp3',
+  '/Am grateful Lord.mp3',
+  '/Holy Vibes Only (Instrumental).mp3',
+  '/Holy Vibes Only.mp3',
+  '/Na So God Dey Do.mp3',
+  '/Na You.mp3',
+  '/Oil No Dry.mp3',
+  '/Oluwa You Too Good.mp3',
+  '/Recognize Me (Instrumental).mp3',
+  '/Recognize Me.mp3',
+  '/Rotten Fruit.mp3',
+  '/Still I Rise to Praise.mp3',
+  '/Testimony No Dey Finish.mp3',
+  // Local MP3s for 'Needs' album
+  '/Disappoint People Early.mp3',
+  '/Faded Hues.mp3',
+  '/False Alarm.mp3',
+  '/Glorified Caterpillar.mp3',
+  '/Hear the Earth Speak.mp3',
+  '/Let Me Be Seen.mp3',
+  '/Little Things.mp3',
+  '/Needs.mp3',
+  '/Not This Road.mp3',
+  '/Permitted Blessing.mp3',
+  '/Right In Front.mp3',
+  '/Scaffolding.mp3',
+  '/Stay Sincere.mp3',
+  '/Thank You For The Wound.mp3',
+  '/The Weight You Carry.mp3',
+  // Icons and Manifest
   '/icon-192.png',
   '/icon-512.png',
   '/manifest.json'
+  // Note: The remote URLs for tracks from 'Kindness' and 'Street Sense' albums are not pre-cached here.
+  // The service worker's fetch handler will cache them dynamically if they are requested during playback.
 ];
 
 // Install event: Cache the specified assets
