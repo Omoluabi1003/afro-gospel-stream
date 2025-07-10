@@ -2,24 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico"> <!-- Create public/favicon.ico -->
+    <link rel="icon" href="icon-192.png"> <!-- Using root icon-192.png as favicon -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A captivating futuristic progressive web application.">
+    <meta name="description" content="Afro-Gospel Stream - Music Player">
 
     <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#1a1a2e"> <!-- Matches manifest.json -->
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png"> <!-- Main icon for iOS -->
-    <link rel="manifest" href="/manifest.json"> <!-- Correct path for Vite -->
+    <!-- Theme color will be updated based on Afro-Gospel manifest or new futuristic styling -->
+    <meta name="theme-color" content="#008000"> <!-- Default from Afro-Gospel manifest.json -->
+    <link rel="apple-touch-icon" href="icon-192.png"> <!-- Main icon for iOS, from root -->
+    <link rel="manifest" href="manifest.json"> <!-- Points to the root manifest for Afro-Gospel -->
 
-    <!-- Preconnect to Google Fonts -->
+    <!-- Preconnect to Google Fonts (Orbitron and Roboto were for the Vue PWA, review if needed for Afro-Gospel futuristic theme) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Keeping these fonts for now, they might be useful for the futuristic theme -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Link to the Afro-Gospel app's stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link to the new Futuristic Theme stylesheet (overrides styles.css where applicable) -->
+    <link rel="stylesheet" href="futuristic_theme.css">
+    <!-- Font Awesome for icons (used in player controls, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <title>Futuristic PWA Showcase</title> <!-- Title matches manifest name -->
+    <title>Afro-Gospel Stream</title> <!-- Updated title for Afro-Gospel app -->
 </head>
 <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <div class="loader">
+        <!-- Loader animation or text can be styled via CSS -->
+        <div class="loader-logo">Loading...</div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">Afro-Gospel Stream</a>
+            <button class="menu-toggle" aria-label="Open navigation menu">
+                <!-- Icon for menu toggle (e.g., hamburger icon) would typically go here -->
+                &#9776; 
+            </button>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#albums">Albums</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" id="main-content">
+        <!-- Content sections like albums and tracks would go here.
+             script.js expects to find .album-header and .track-item elements.
+             For now, this will be minimal to avoid errors.
+             The actual song data and structure would need to be added for full functionality.
+        -->
+        <section id="albums" class="tracks"> <!-- .tracks class used in styles.css -->
+            <h2>Albums</h2>
+            <!-- Example of how an album might be structured, if script.js needs to find these.
+                 If script.js dynamically creates these, this is just for initial structure.
+            <div class="album">
+                <div class="album-header" aria-expanded="false">
+                    <img src="FaithandB.jpg" alt="Album Art">
+                    <div>
+                        <h3>Album Title</h3>
+                        <p>Artist Name</p>
+                    </div>
+                    <button class="album-toggle"><i class="fas fa-chevron-down"></i></button>
+                </div>
+                <div class="album-content">
+                    <ul class="track-list">
+                        <li class="track-item">
+                            <img src="FaithandB.jpg" alt="Track Art">
+                            <div class="track-info">
+                                <h3><a href="#">Song Title 1</a></h3>
+                                <p>Artist</p>
+                            </div>
+                            <audio src="Am grateful Lord.mp3"></audio>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            -->
+            <!-- This paragraph will be removed by script.js when albums are rendered -->
+             <p>Loading albums...</p>
+        </section>
+
+        <section id="counters-section">
+            <!-- Placeholder for .counter elements if needed by script.js -->
+            <!-- <div class="counter" data-target="100">0k</div> -->
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Afro-Gospel Stream. Futuristic Theme.</p>
+        </div>
+    </footer>
+
+    <div class="player-bar">
+        <div class="track-info">
+            <img src="" alt="Track Artwork" id="player-artwork">
+            <div>
+                <h3 id="player-title">No Track</h3>
+                <p id="player-artist">Select a song</p>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="previous" aria-label="Previous track"><i class="fas fa-step-backward"></i></button>
+            <button id="play-pause" aria-label="Play track"><i class="fas fa-play"></i></button>
+            <button id="next" aria-label="Next track"><i class="fas fa-step-forward"></i></button>
+        </div>
+        <div class="progress">
+            <input type="range" id="progress-bar" value="0" min="0" max="100" aria-label="Playback progress">
+        </div>
+        <div class="volume-controls">
+            <button id="mute" aria-label="Mute track"><i class="fas fa-volume-up"></i></button>
+            <input type="range" id="volume-bar" value="1" min="0" max="1" step="0.01" aria-label="Volume control">
+        </div>
+        <div class="extra-controls">
+             <button id="repeat" aria-label="Enable repeat"><i class="fas fa-redo"></i></button>
+             <button id="shuffle" aria-label="Enable shuffle"><i class="fas fa-random"></i></button>
+        </div>
+    </div>
+    
+    <!-- Load data first, then the main script -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
